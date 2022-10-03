@@ -1,5 +1,4 @@
 package BotPackage;
-
 public class InnerState {
 	private Command com;
 	private boolean exitState;
@@ -13,19 +12,15 @@ public class InnerState {
 		this.wr = wr ;
 		this.rd = rd;
 	}
-	
 	boolean isExit() {
 		return exitState;
 	}
-	
 	boolean cor_com() {
 		return com.correct();
 	}
-	
 	void setCommand(String com) {
 		this.com = new Command(com);
 	}
-	
 	void exec_com() {
 		switch(com.hesh) {
 			case 0:

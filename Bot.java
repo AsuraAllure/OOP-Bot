@@ -4,10 +4,14 @@ public class Bot {
     private static Reader rd;
     private static Writer wr;
     private static InnerState is;
+    private static Factory fc;
     public static void main(String[] args) {
     	
+    	if (args.length == 0)
+    		fc = new ConsoleFactory();	
+    	
     	_init();
-    
+    	
     	wr.sayHello();
         do {       
         	wr.write("Ввод команды: ");
@@ -21,8 +25,8 @@ public class Bot {
     }   
     
     private static void _init() {
-    	rd = new ConsoleReader();
-    	wr = new ConsoleWriter();
+    	rd = fc.getReader();
+    	wr = fc.getWriter();
     	is = new InnerState(wr,rd);
     }
 }
