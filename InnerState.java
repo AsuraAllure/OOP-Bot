@@ -4,7 +4,8 @@ public class InnerState {
 	private boolean exitState;
 	private Writer wr;
 	private Reader rd;
-	private String UsersData;
+	private String UsersData1;
+	private String UsersData2;
 	
 	InnerState(Writer wr, Reader rd){
 		com = new Command();
@@ -32,29 +33,31 @@ public class InnerState {
 			case 2:
 				wr.writeln("Введи \"1\", если хочешь подключиться к WatsApp, \"2\" - к Вконтакте.");
 				wr.write("Ввод: ");
-				
-				
+
 				switch(rd.read()) {
 					case "1" :
 						wr.writeln("Для подключения к WatsApp введите свой номер телефона в формате: \"9122222222\".");
 						wr.write("Ввод: ");
-						UsersData = rd.read();
-						wr.writeln(UsersData);
+						UsersData1 = rd.read();
+						wr.write("Вы ввели: ");
+						wr.writeln(UsersData1);
 						exitState = true;
 						break;
 					case "2" :
 						wr.writeln("Для подключения к Вконтакте введите логин и пароль (строго в таком порядке) через Enter.");
 						wr.write("Ввод: ");
-						UsersData = rd.read();
-						wr.writeln(UsersData);
+						UsersData1 = rd.read();
+						wr.writeln(UsersData1);
+						wr.write("Вы ввели: ");
+						UsersData2 = rd.read();
+						wr.write("Вы ввели: ");
+						wr.writeln(UsersData2);
 						exitState = true;
 						break;
 					default:
 						wr.writeln("Choose problem");
 						exitState = true;
 				}
-				
-				
 				break;
 			default:
 				wr.writeln("Непредвиденная команда");
