@@ -17,3 +17,8 @@ v1.1
 
 Добавлен интерфейс Factory, её реализация ConsoleFactory.
 Немного изменен main.
+ 
+ 
+ v1.2
+ 
+ Введен Main, Введен класс Tester. К классу Command добавлена функция toString()
