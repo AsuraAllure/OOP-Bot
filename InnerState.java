@@ -32,6 +32,8 @@ public class InnerState {
 			case 2:
 				wr.writeln("Введи \"1\", если хочешь подключиться к WatsApp, \"2\" - к Вконтакте.");
 				wr.write("Ввод: ");
+				
+				
 				switch(rd.read()) {
 					case "1" :
 						wr.writeln("Для подключения к WatsApp введите свой номер телефона в формате: \"9122222222\".");
@@ -51,6 +53,8 @@ public class InnerState {
 						wr.writeln("Choose problem");
 						exitState = true;
 				}
+				
+				
 				break;
 			default:
 				wr.writeln("Непредвиденная команда");

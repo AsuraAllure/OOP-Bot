@@ -1,22 +1,21 @@
 package BotPackage;
 
 public class Bot {
-    private static Reader rd;
-    private static Writer wr;
-    private static InnerState is;
-    private static Factory fc;
-    public static void main(String[] args) {
-    	
-    	if (args.length == 0)
-    		fc = new ConsoleFactory();	
-    	
-    	_init();
-    	
+    private  Reader rd;
+    private  Writer wr;
+    private  InnerState is;
+    
+    Bot(Factory fc){
+    	rd = fc.getReader();
+    	wr = fc.getWriter();
+    	is = new InnerState(wr,rd);
+    }
+    public void run() {
     	wr.sayHello();
         do {       
         	wr.write("Ввод команды: ");
         	is.setCommand(rd.read());
-        	if (is.cor_com()) // переделать в correct_command
+        	if (is.cor_com())
         		is.exec_com();
         	else
         		wr.incorrect();
@@ -24,9 +23,4 @@ public class Bot {
         wr.goodbuy();
     }   
     
-    private static void _init() {
-    	rd = fc.getReader();
-    	wr = fc.getWriter();
-    	is = new InnerState(wr,rd);
-    }
 }

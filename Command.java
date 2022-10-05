@@ -1,5 +1,4 @@
 package BotPackage;
-// Идея хэширования имен команд под вопросом
 class Command {
 	type_Command t;
 	int hesh;
@@ -32,5 +31,19 @@ class Command {
 		else
 			return false;
 	}
-
+	public String toString() {
+		if (t == type_Command.nullcommand)
+			return "Null";
+		if (t == type_Command.incorrect)
+			return "Incorrect";
+		switch(hesh){
+			case 0:
+				return "exit";
+			case 1:
+				return "help";
+			case 2: 
+				return "choose";
+		}
+		return "Unknown error";
+	}
 }
