@@ -7,7 +7,7 @@ public class Main {
 		b1.run();
 		
 		Tester t1 = new Tester();
-		t1.test_command();
-		t1.test_console_factory();
+		t1.testCommand();
+		t1.testConsoleFactory();
 	}
 }
