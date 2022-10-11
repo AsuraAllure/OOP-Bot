@@ -1,4 +1,4 @@
 package BotPackage;
-enum type_Messanger{
+enum typeMessanger{
 	VK, WatsApp
 }

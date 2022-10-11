@@ -15,8 +15,8 @@ public class Bot {
         do {       
         	wr.write("Ввод команды: ");
         	is.setCommand(rd.read());
-        	if (is.cor_com())
-        		is.exec_com();
+        	if (is.correctCommand())
+        		is.execCommand();
         	else
         		wr.incorrect();
          } while(!is.isExit());

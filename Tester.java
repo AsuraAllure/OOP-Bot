@@ -1,7 +1,7 @@
 package BotPackage;
 
 public class Tester {
-	public void test_command() {
+	public void testCommand() {
 		System.out.print("Ничего не ввели, Ожидается Null\nCостояник команды: ");
 		Command c1 = new Command();
 		System.out.println(c1.toString());
@@ -23,7 +23,7 @@ public class Tester {
 		System.out.println(c1.toString());
 	}
 
-	public void test_console_factory() {
+	public void testConsoleFactory() {
 		Factory f = new ConsoleFactory();
 		System.out.print("Выполняется функция getReader(). Ожидается получить ConsoleReader\nПолучили:");
 		System.out.println(f.getReader().getClass().toString());

@@ -15,13 +15,13 @@ public class InnerState {
 	boolean isExit() {
 		return exitState;
 	}
-	boolean cor_com() {
+	boolean correctCommand() {
 		return com.correct();
 	}
 	void setCommand(String com) {
 		this.com = new Command(com);
 	}
-	void exec_com() {
+	void execCommand() {
 		switch(com.hesh) {
 			case 0:
 				exitState = true;
@@ -32,8 +32,6 @@ public class InnerState {
 			case 2:
 				wr.writeln("Введи \"1\", если хочешь подключиться к WatsApp, \"2\" - к Вконтакте.");
 				wr.write("Ввод: ");
-				
-				
 				switch(rd.read()) {
 					case "1" :
 						wr.writeln("Для подключения к WatsApp введите свой номер телефона в формате: \"9122222222\".");
