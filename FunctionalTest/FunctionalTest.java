@@ -1,7 +1,7 @@
 package BotPackage.FunctionalTest;
 import BotPackage.Classes.Bot;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FunctionalTest {
 
@@ -11,13 +11,28 @@ public class FunctionalTest {
         testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test1");
         testBot.run();
 
-        boolean[] arrayTest1 = new boolean[5];
-        for (int i = 0; i < 5; i++) arrayTest1[i] = false;
-        testBot.getState(arrayTest1);
+        String testOutput = testBot.getTestOut();
+        String expectOutput = """
+                Привет!
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
 
-        boolean[] arrayExpected1 = new boolean[]
-                {false, true, true, true, false};
-        assertArrayEquals(arrayExpected1, arrayTest1);
+                Если хочешь еще раз увидеть справку, введи: "help".
+                Ввод:\s
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи "choose", чтобы выбрать мессенджер, который тебя сейчас интересует.
+                Ввод:\s
+                Введи "1", если хочешь подключиться к WatsApp, "2" - к Вконтакте.
+                Ввод:\s
+                Для подключения к WatsApp введите свой номер телефона в формате: "9122222222".
+                Ввод:\s
+                Вы ввели: 12345
+                Завершение работы.""";
+        assertEquals(expectOutput, testOutput);
     }
 
     @Test
@@ -26,13 +41,29 @@ public class FunctionalTest {
         testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test2");
         testBot.run();
 
-        boolean[] arrayTest1 = new boolean[5];
-        for (int i = 0; i < 5; i++) arrayTest1[i] = false;
-        testBot.getState(arrayTest1);
+        String testOutput = testBot.getTestOut();
+        String expectOutput = """
+                Привет!
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
 
-        boolean[] arrayExpected1 = new boolean[]
-                {false, true, true, false, true};
-        assertArrayEquals(arrayExpected1, arrayTest1);
+                Если хочешь еще раз увидеть справку, введи: "help".
+                Ввод:\s
+                Некорректный запрос!
+                Ввод:\s
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи "choose", чтобы выбрать мессенджер, который тебя сейчас интересует.
+                Ввод:\s
+                Введи "1", если хочешь подключиться к WatsApp, "2" - к Вконтакте.
+                Ввод:\s
+                Для подключения к Вконтакте введите логин и пароль (строго в таком порядке) через пробел.
+                Ввод:\s
+                Завершение работы.""";
+        assertEquals(expectOutput, testOutput);
     }
 
 
@@ -42,13 +73,30 @@ public class FunctionalTest {
         testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test3");
         testBot.run();
 
-        boolean[] arrayTest1 = new boolean[5];
-        for (int i = 0; i < 5; i++) arrayTest1[i] = false;
-        testBot.getState(arrayTest1);
+        String testOutput = testBot.getTestOut();
+        String expectOutput = """
+                Привет!
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
 
-        boolean[] arrayExpected1 = new boolean[]
-                {false, true, true, true, false};
-        assertArrayEquals(arrayExpected1, arrayTest1);
+                Если хочешь еще раз увидеть справку, введи: "help".
+                Ввод:\s
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи "choose", чтобы выбрать мессенджер, который тебя сейчас интересует.
+                Ввод:\s
+                Некорректный запрос!
+                Ввод:\s
+                Введи "1", если хочешь подключиться к WatsApp, "2" - к Вконтакте.
+                Ввод:\s
+                Для подключения к WatsApp введите свой номер телефона в формате: "9122222222".
+                Ввод:\s
+                Вы ввели: 89122122222
+                Завершение работы.""";
+        assertEquals(expectOutput, testOutput);
     }
 
 
@@ -58,13 +106,20 @@ public class FunctionalTest {
         testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test4");
         testBot.run();
 
-        boolean[] arrayTest1 = new boolean[5];
-        for (int i = 0; i < 5; i++) arrayTest1[i] = false;
-        testBot.getState(arrayTest1);
+        String testOutput = testBot.getTestOut();
+        String expectOutput = """
+                Привет!
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
 
-        boolean[] arrayExpected1 = new boolean[]
-                {true, false, false, false, false};
-        assertArrayEquals(arrayExpected1, arrayTest1);
+                Если хочешь еще раз увидеть справку, введи: "help".
+                Ввод:\s
+                Некорректный запрос!
+                Ввод:\s
+                Завершение работы.""";
+        assertEquals(expectOutput, testOutput);
     }
 
 
@@ -74,12 +129,19 @@ public class FunctionalTest {
         testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test5");
         testBot.run();
 
-        boolean[] arrayTest1 = new boolean[5];
-        for (int i = 0; i < 5; i++) arrayTest1[i] = false;
-        testBot.getState(arrayTest1);
+        String testOutput = testBot.getTestOut();
+        String expectOutput = """
+                Привет!
+                Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+                В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+                показывать их содержимое и даже отвечать на них (может быть:) ).
+                Но пока я могу исполнять только одну команду. Введи choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
 
-        boolean[] arrayExpected1 = new boolean[]
-                {true, false, true, false, false};
-        assertArrayEquals(arrayExpected1, arrayTest1);
+                Если хочешь еще раз увидеть справку, введи: "help".
+                Ввод:\s
+                Введи "1", если хочешь подключиться к WatsApp, "2" - к Вконтакте.
+                Ввод:\s
+                Завершение работы.""";
+        assertEquals(expectOutput, testOutput);
     }
 }

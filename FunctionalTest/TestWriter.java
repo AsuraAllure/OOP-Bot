@@ -3,28 +3,20 @@ import BotPackage.Interfaces.Writer;
 
 public class TestWriter implements Writer{
 
-    @Override
-    public void sayHello() {
-        return;
+    private StringBuilder TestOut;
+    public TestWriter() {
+        TestOut = new StringBuilder();
     }
 
-    @Override
-    public void myHelp() {
-        return;
+    public void writeln(String s) {
+        System.out.println(s);
     }
 
-    @Override
-    public void incorrect() {
-        return;
+    public String getTestOut() {
+        return TestOut.toString();
     }
 
-    @Override
-    public void goodbuy() {
-        return;
-    }
-
-    @Override
-    public void writeln(String m) {
-        return;
+    public void setTestOut(String testOut) {
+        TestOut.append(testOut);
     }
 }

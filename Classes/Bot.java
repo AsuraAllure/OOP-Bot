@@ -11,31 +11,34 @@ public class Bot {
     public Bot(Factory fc){
     	rd = fc.getReader();
     	wr = fc.getWriter();
-    	is = new InnerState(wr,rd);
+    	is = new InnerState(wr, rd);
     }
     public void run() {
-        wr.sayHello();
+        wr.writeln(is.getHello());
+        wr.setTestOut(is.getHello() + "\n");
         do {
-            wr.writeln("Ввод команды: ");
+            wr.writeln(is.getInput());
+            wr.setTestOut(is.getInput() + "\n");
             is.setCommand(rd.read());
             if (is.correctCommand())
                 is.execCommand();
             else {
-                wr.incorrect();
+                wr.writeln(is.getIncorrectCommand());
+                wr.setTestOut(is.getIncorrectCommand() + "\n");
                 rd.incrementCounter();
             }
         } while (!is.isExit());
-        wr.goodbuy();
+        wr.writeln(is.geyGoodbye());
+        wr.setTestOut(is.geyGoodbye());
     }
 
     public void setNameOfFile(String str){
         rd.setNameOfFile(str);
     }
-    public void getState(boolean[] arrayOfBoolean){
-        arrayOfBoolean[0] = is.getHashCommand0();
-        arrayOfBoolean[1] = is.getHashCommand1();
-        arrayOfBoolean[2] = is.getHashCommand2();
-        arrayOfBoolean[3] = is.getHashCommand21();
-        arrayOfBoolean[4] = is.getHashCommand22();
+
+    public String getTestOut(){
+        StringBuilder TestOut  = new StringBuilder();
+        TestOut.append(wr.getTestOut());
+        return TestOut.toString();
     }
 }

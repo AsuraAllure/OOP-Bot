@@ -9,20 +9,6 @@ public class InnerState {
 	private Writer wr;
 	private Reader rd;
 	private String UsersData;
-	private boolean hashCommand0;
-	private boolean hashCommand1;
-	private boolean hashCommand2;
-	private boolean hashCommand21;
-	private boolean hashCommand22;
-
-	public InnerState(){
-		hashCommand0 = false;
-		hashCommand1 = false;
-		hashCommand2 = false;
-		hashCommand21 = false;
-		hashCommand22 = false;
-	}
-	
 	InnerState(Writer wr, Reader rd){
 		com = new Command();
 		exitState = false;
@@ -42,83 +28,98 @@ public class InnerState {
 		switch(com.hesh) {
 			case 0:
 				exitState = true;
-				setHashCommand0(true);
 				break;
 			case 1:
-				wr.myHelp();
+				wr.writeln(getHelp());
+				wr.setTestOut(getHelp() + "\n");
 				rd.incrementCounter();
-				setHashCommand1(true);
 				break;
 			case 2:
-				wr.writeln("Введи \"1\", если хочешь подключиться к WatsApp, \"2\" - к Вконтакте.");
-				wr.writeln("Ввод: ");
+				wr.writeln(getChoiceOfMessenger());
+				wr.setTestOut(getChoiceOfMessenger() + "\n");
+				wr.writeln(getInput());
+				wr.setTestOut(getInput() + "\n");
 				rd.incrementCounter();
-				setHashCommand2(true);
 				switch(rd.read()) {
 					case "1" :
-						wr.writeln("Для подключения к WatsApp введите свой номер телефона в формате: \"9122222222\".");
-						wr.writeln("Ввод: ");
+						wr.writeln(getWhatsappChoice());
+						wr.setTestOut(getWhatsappChoice() + "\n");
+						wr.writeln(getInput());
+						wr.setTestOut(getInput() + "\n");
 						rd.incrementCounter();
 						UsersData = rd.read();
-						wr.writeln("Вы ввели: " + UsersData);
+						wr.writeln(getYourInput() + UsersData);
+						wr.setTestOut(getYourInput() + UsersData + "\n");
 						exitState = true;
-						setHashCommand21(true);
 						break;
 					case "2" :
-						wr.writeln("Для подключения к Вконтакте введите логин и пароль (строго в таком порядке) через пробел.");
-						wr.writeln("Ввод: ");
-						rd.incrementCounter();
+						wr.writeln(getVkChoice());
 						UsersData = rd.read();
+						wr.setTestOut(getVkChoice() + "\n");
+						wr.writeln(getInput());
+						wr.setTestOut(getInput() + "\n");
+						rd.incrementCounter();
 						exitState = true;
-						setHashCommand22(true);
 						break;
 					default:
 						exitState = true;
 						rd.incrementCounter();
-						setHashCommand0(true);
 				}
 				break;
 			default:
-				wr.writeln("Непредвиденная команда");
+				wr.writeln(getWrongCommand());
+				wr.setTestOut(getWrongCommand() + "\n");
 		}
 	}
 
-	public boolean getHashCommand0() {
-		return hashCommand0;
+	public String getChoiceOfMessenger() {
+		return "Введи \"1\", если хочешь подключиться к WatsApp, \"2\" - к Вконтакте.";
 	}
 
-	public void setHashCommand0(boolean b){
-		hashCommand0 = b;
+	public String getInput() {
+		return "Ввод: ";
 	}
 
-	public boolean getHashCommand1() {
-		return hashCommand1;
+	public String getWhatsappChoice() {
+		return "Для подключения к WatsApp введите свой номер телефона в формате: \"9122222222\".";
 	}
 
-	public void setHashCommand1(boolean b){
-		hashCommand1 = b;
+	public String getVkChoice() {
+		return "Для подключения к Вконтакте введите логин и пароль (строго в таком порядке) через пробел.";
 	}
 
-	public boolean getHashCommand2() {
-		return hashCommand2;
+	public String getYourInput() {
+		return "Вы ввели: ";
 	}
 
-	public void setHashCommand2(boolean b){
-		hashCommand2 = b;
+	public String getWrongCommand(){
+		return "Непредвиденная команда";
 	}
 
-	public boolean getHashCommand21() {
-		return hashCommand21;
-	}
-	public void setHashCommand21(boolean b){
-		hashCommand21 = b;
+	public String getHello(){
+		return """
+				Привет!
+				Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+				В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+				показывать их содержимое и даже отвечать на них (может быть:) ).
+				Но пока я могу исполнять только одну команду. Введи choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
+
+				Если хочешь еще раз увидеть справку, введи: "help".""";
 	}
 
-	public boolean getHashCommand22() {
-		return hashCommand22;
+	public String getHelp() {
+		return """
+				Я бот, который облегчит тебе работу с WatsApp и Вконтакте)
+				В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WatsApp и Вконтакте,
+				показывать их содержимое и даже отвечать на них (может быть:) ).
+				Но пока я могу исполнять только одну команду. Введи "choose", чтобы выбрать мессенджер, который тебя сейчас интересует.""";
 	}
 
-	public void setHashCommand22(boolean b){
-		hashCommand22 = b;
+	public String getIncorrectCommand(){
+		return "Некорректный запрос!";
+	}
+
+	public String geyGoodbye(){
+		return "Завершение работы.";
 	}
 }
