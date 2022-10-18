@@ -37,8 +37,8 @@ public class Bot {
     }
 
     public String getTestOut(){
-        StringBuilder TestOut  = new StringBuilder();
-        TestOut.append(wr.getTestOut());
-        return TestOut.toString();
+        StringBuilder testOut  = new StringBuilder();
+        testOut.append(wr.getTestOut());
+        return testOut.toString();
     }
 }

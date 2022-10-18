@@ -9,8 +9,8 @@ public class ConsoleWriter implements Writer {
 		testOut = new StringBuilder();
 	}
 
-	public void writeln(String s) {
-		System.out.println(s);
+	public void writeln(String str) {
+		System.out.println(str);
 	}
 
 	public String getTestOut() {

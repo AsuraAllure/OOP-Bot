@@ -5,7 +5,7 @@ import BotPackage.Enums.TypeCommand;
 public class Command {
 	public TypeCommand t;
 	public int hesh;
-	public Command(String com){
+	Command(String com){
 		switch(com) {
 		case "exit":
 			hesh = 0;
@@ -24,7 +24,7 @@ public class Command {
 			t = TypeCommand.INCORRECT;
 		}
 	}
-	public Command(){
+	Command(){
 		t = TypeCommand.NULLCOMMAND;
 		hesh = -1;
 	}

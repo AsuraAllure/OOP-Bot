@@ -8,7 +8,7 @@ public class InnerState {
 	private boolean exitState;
 	private Writer wr;
 	private Reader rd;
-	private String UsersData;
+	private String userData;
 	InnerState(Writer wr, Reader rd){
 		com = new Command();
 		exitState = false;
@@ -47,14 +47,14 @@ public class InnerState {
 						wr.writeln(getInput());
 						wr.setTestOut(getInput() + "\n");
 						rd.incrementCounter();
-						UsersData = rd.read();
-						wr.writeln(getYourInput() + UsersData);
-						wr.setTestOut(getYourInput() + UsersData + "\n");
+						userData = rd.read();
+						wr.writeln(getYourInput() + userData);
+						wr.setTestOut(getYourInput() + userData + "\n");
 						exitState = true;
 						break;
 					case "2" :
 						wr.writeln(getVkChoice());
-						UsersData = rd.read();
+						userData = rd.read();
 						wr.setTestOut(getVkChoice() + "\n");
 						wr.writeln(getInput());
 						wr.setTestOut(getInput() + "\n");

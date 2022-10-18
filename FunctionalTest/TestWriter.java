@@ -3,20 +3,20 @@ import BotPackage.Interfaces.Writer;
 
 public class TestWriter implements Writer{
 
-    private StringBuilder TestOut;
+    private StringBuilder testOut;
     public TestWriter() {
-        TestOut = new StringBuilder();
+        testOut = new StringBuilder();
     }
 
-    public void writeln(String s) {
-        System.out.println(s);
+    public void writeln(String str) {
+        System.out.println(str);
     }
 
     public String getTestOut() {
-        return TestOut.toString();
+        return testOut.toString();
     }
 
-    public void setTestOut(String testOut) {
-        TestOut.append(testOut);
+    public void setTestOut(String str) {
+        testOut.append(str);
     }
 }

@@ -6,7 +6,11 @@ import BotPackage.Interfaces.Writer;
 
 public class TestFactory implements Factory {
     @Override
-    public Reader getReader() { return new TestReader();}
+    public Reader getReader() {
+        return new TestReader();
+    }
     @Override
-    public Writer getWriter() { return new TestWriter();}
+    public Writer getWriter() {
+        return new TestWriter();
+    }
 }
