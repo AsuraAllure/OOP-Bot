@@ -8,7 +8,7 @@ public class FunctionalTest {
     @Test
     public void Test1(){
         Bot testBot = new Bot(new TestFactory());
-        testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test1");
+        testBot.setNameOfFile("FunctionalTest/Test1");
         testBot.run();
 
         String testOutput = testBot.getTestOut();
@@ -38,7 +38,7 @@ public class FunctionalTest {
     @Test
     public void Test2(){
         Bot testBot = new Bot(new TestFactory());
-        testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test2");
+        testBot.setNameOfFile("FunctionalTest/Test2");
         testBot.run();
 
         String testOutput = testBot.getTestOut();
@@ -70,7 +70,7 @@ public class FunctionalTest {
     @Test
     public void Test3(){
         Bot testBot = new Bot(new TestFactory());
-        testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test3");
+        testBot.setNameOfFile("FunctionalTest/Test3");
         testBot.run();
 
         String testOutput = testBot.getTestOut();
@@ -103,7 +103,7 @@ public class FunctionalTest {
     @Test
     public void Test4(){
         Bot testBot = new Bot(new TestFactory());
-        testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test4");
+        testBot.setNameOfFile("FunctionalTest/Test4");
         testBot.run();
 
         String testOutput = testBot.getTestOut();
@@ -126,7 +126,7 @@ public class FunctionalTest {
     @Test
     public void Test5(){
         Bot testBot = new Bot(new TestFactory());
-        testBot.setNameOfFile("/Users/ulya/Desktop/Bot_Git/FunctionalTest/Test5");
+        testBot.setNameOfFile("FunctionalTest/Test5");
         testBot.run();
 
         String testOutput = testBot.getTestOut();

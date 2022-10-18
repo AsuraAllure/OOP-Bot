@@ -1,4 +1,4 @@
 package BotPackage.Enums;
-public enum typeMessanger{
+public enum TypeMessanger {
 	VK, WATSAPP
 }

@@ -1,43 +1,43 @@
 package BotPackage.Classes;
 
-import BotPackage.Enums.typeCommand;
+import BotPackage.Enums.TypeCommand;
 
 public class Command {
-	typeCommand t;
-	int hesh;
-	Command(String com){
+	public TypeCommand t;
+	public int hesh;
+	public Command(String com){
 		switch(com) {
 		case "exit":
 			hesh = 0;
-			t = typeCommand.CORRECT;
+			t = TypeCommand.CORRECT;
 			break;
 		case "help":
 			hesh = 1;
-			t = typeCommand.CORRECT;
+			t = TypeCommand.CORRECT;
 			break;
 		case "choose":
 			hesh = 2;
-			t = typeCommand.CORRECT;
+			t = TypeCommand.CORRECT;
 			break;
 		default:
 			hesh = -1;
-			t = typeCommand.INCORRECT;
+			t = TypeCommand.INCORRECT;
 		}
 	}
-	Command(){
-		t = typeCommand.NULLCOMMAND;
+	public Command(){
+		t = TypeCommand.NULLCOMMAND;
 		hesh = -1;
 	}
 	public boolean correct() {
-		if (t == typeCommand.CORRECT)
+		if (t == TypeCommand.CORRECT)
 			return true;
 		else
 			return false;
 	}
 	public String toString() {
-		if (t == typeCommand.NULLCOMMAND)
+		if (t == TypeCommand.NULLCOMMAND)
 			return "Null";
-		if (t == typeCommand.INCORRECT)
+		if (t == TypeCommand.INCORRECT)
 			return "Incorrect";
 		switch(hesh){
 			case 0:

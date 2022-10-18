@@ -1,4 +1,4 @@
 package BotPackage.Enums;
-public enum typeCommand {
+public enum TypeCommand {
 	CORRECT, INCORRECT, NULLCOMMAND
 }

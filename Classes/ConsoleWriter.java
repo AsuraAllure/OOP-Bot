@@ -3,10 +3,10 @@ package BotPackage.Classes;
 import BotPackage.Interfaces.Writer;
 
 public class ConsoleWriter implements Writer {
-	private StringBuilder TestOut;
+	private StringBuilder testOut;
 
 	public ConsoleWriter() {
-		TestOut = new StringBuilder();
+		testOut = new StringBuilder();
 	}
 
 	public void writeln(String s) {
@@ -14,10 +14,10 @@ public class ConsoleWriter implements Writer {
 	}
 
 	public String getTestOut() {
-		return TestOut.toString();
+		return testOut.toString();
 	}
 
-	public void setTestOut(String testOut) {
-		TestOut.append(testOut);
+	public void setTestOut(String str) {
+		testOut.append(str);
 	}
 }
