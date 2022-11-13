@@ -3,21 +3,13 @@ package BotPackage.Classes;
 import BotPackage.Interfaces.Writer;
 
 public class ConsoleWriter implements Writer {
-	private StringBuilder testOut;
-
-	public ConsoleWriter() {
-		testOut = new StringBuilder();
+	@Override
+	public void write(String m){
+		System.out.print(m);
 	}
-
+	@Override
 	public void writeln(String str) {
 		System.out.println(str);
 	}
 
-	public String getTestOut() {
-		return testOut.toString();
-	}
-
-	public void setTestOut(String str) {
-		testOut.append(str);
-	}
 }

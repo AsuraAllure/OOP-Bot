@@ -5,40 +5,25 @@ import BotPackage.Interfaces.Reader;
 import BotPackage.Interfaces.Writer;
 
 public class Bot {
-    private Reader rd;
-    private Writer wr;
-    private InnerState is;
+    private final Reader rd;
+    private final Writer wr;
+    private final InnerState is;
     public Bot(Factory fc){
-    	rd = fc.getReader();
-    	wr = fc.getWriter();
-    	is = new InnerState(wr, rd);
+        rd = fc.getReader();
+        wr = fc.getWriter();
+        is = new InnerState(wr, rd);
     }
     public void run() {
         wr.writeln(is.getHello());
-        wr.setTestOut(is.getHello() + "\n");
         do {
-            wr.writeln(is.getInput());
-            wr.setTestOut(is.getInput() + "\n");
+            wr.write(is.getInputMessage());
             is.setCommand(rd.read());
             if (is.correctCommand())
                 is.execCommand();
             else {
                 wr.writeln(is.getIncorrectCommand());
-                wr.setTestOut(is.getIncorrectCommand() + "\n");
-                rd.incrementCounter();
             }
         } while (!is.isExit());
-        wr.writeln(is.geyGoodbye());
-        wr.setTestOut(is.geyGoodbye());
-    }
-
-    public void setNameOfFile(String str){
-        rd.setNameOfFile(str);
-    }
-
-    public String getTestOut(){
-        StringBuilder testOut  = new StringBuilder();
-        testOut.append(wr.getTestOut());
-        return testOut.toString();
+        wr.write(is.sayGoodbye());
     }
 }

@@ -7,21 +7,21 @@ public class Command {
 	public int hesh;
 	Command(String com){
 		switch(com) {
-		case "exit":
-			hesh = 0;
-			t = TypeCommand.CORRECT;
-			break;
-		case "help":
-			hesh = 1;
-			t = TypeCommand.CORRECT;
-			break;
-		case "choose":
-			hesh = 2;
-			t = TypeCommand.CORRECT;
-			break;
-		default:
-			hesh = -1;
-			t = TypeCommand.INCORRECT;
+			case "exit":
+				hesh = 0;
+				t = TypeCommand.CORRECT;
+				break;
+			case "help":
+				hesh = 1;
+				t = TypeCommand.CORRECT;
+				break;
+			case "choose":
+				hesh = 2;
+				t = TypeCommand.CORRECT;
+				break;
+			default:
+				hesh = -1;
+				t = TypeCommand.INCORRECT;
 		}
 	}
 	Command(){
@@ -31,8 +31,7 @@ public class Command {
 	public boolean correct() {
 		if (t == TypeCommand.CORRECT)
 			return true;
-		else
-			return false;
+		return false;
 	}
 	public String toString() {
 		if (t == TypeCommand.NULLCOMMAND)
@@ -44,7 +43,7 @@ public class Command {
 				return "exit";
 			case 1:
 				return "help";
-			case 2: 
+			case 2:
 				return "choose";
 		}
 		return "Unknown error";

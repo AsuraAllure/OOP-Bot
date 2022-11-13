@@ -12,21 +12,19 @@ public class TestReader implements Reader {
     private int counter;
     private String nameOfFile;
 
-    public TestReader() {
+    public TestReader(String nameTestFile) {
         counter = 0;
+        nameOfFile = nameTestFile;
     }
-
-    @Override
     public void incrementCounter() {
         counter += 1;
     }
 
-    public void setNameOfFile(String nameOfFile) {
-        this.nameOfFile = nameOfFile;
-    }
-
     @Override
-    public String read() {
+    public String read()
+    {
+        if (nameOfFile == null)
+            throw new Error();
         int i = counter;
         String line;
         Path path = Paths.get(nameOfFile);
@@ -36,6 +34,7 @@ public class TestReader implements Reader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        incrementCounter();
         return line;
     }
 }

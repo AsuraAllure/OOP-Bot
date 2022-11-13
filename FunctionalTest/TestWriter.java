@@ -7,16 +7,16 @@ public class TestWriter implements Writer{
     public TestWriter() {
         testOut = new StringBuilder();
     }
-
     public void writeln(String str) {
-        System.out.println(str);
+        testOut.append(str+'\n');
     }
+    public void write(String str){
 
-    public String getTestOut() {
+        testOut.append(str);
+    }
+    public String getTestOut()
+    {
         return testOut.toString();
     }
 
-    public void setTestOut(String str) {
-        testOut.append(str);
-    }
 }
