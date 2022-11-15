@@ -4,9 +4,9 @@ import BotPackage.Interfaces.Reader;
 import BotPackage.Interfaces.Writer;
 
 class IOManager implements Reader, Writer {
-    private Reader rd;
-    private Writer wr;
-    private MessageBox mb;
+    private final Reader rd;
+    private final Writer wr;
+    private final MessageBox mb;
     IOManager(Reader rd, Writer wr){
         this.rd = rd;
         this.wr = wr;
