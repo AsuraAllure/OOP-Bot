@@ -1,4 +1,4 @@
-package BotPackage.Classes;
+package BotPackage.Console;
 
 import BotPackage.Interfaces.Factory;
 import BotPackage.Interfaces.Reader;

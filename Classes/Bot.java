@@ -5,25 +5,22 @@ import BotPackage.Interfaces.Reader;
 import BotPackage.Interfaces.Writer;
 
 public class Bot {
-    private final Reader rd;
-    private final Writer wr;
+   private final IOManager io;
     private final InnerState is;
     public Bot(Factory fc){
-        rd = fc.getReader();
-        wr = fc.getWriter();
-        is = new InnerState(wr, rd);
+        this.io = new IOManager(fc.getReader(), fc.getWriter());
+        is = new InnerState(io);
     }
     public void run() {
-        wr.writeln(is.getHello());
+        io.writeln(is.getHello());
         do {
-            wr.write(is.getInputMessage());
-            is.setCommand(rd.read());
+            is.setCommand(io.read());
             if (is.correctCommand())
                 is.execCommand();
             else {
-                wr.writeln(is.getIncorrectCommand());
+                io.writeln(is.getIncorrectCommand());
             }
         } while (!is.isExit());
-        wr.write(is.sayGoodbye());
+        io.write(is.sayGoodbye());
     }
 }

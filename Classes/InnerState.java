@@ -1,20 +1,15 @@
 package BotPackage.Classes;
-
-import BotPackage.Interfaces.Reader;
-import BotPackage.Interfaces.Writer;
 public class InnerState {
 	private Command com;
 	private boolean exitState;
-	private final Writer wr;
-	private final Reader rd;
+	private final IOManager io;
 	private final MessageBox mb;
 	private String userData;
-	InnerState(Writer wr, Reader rd){
+	InnerState(IOManager io){
 		com = new Command();
 		exitState = false;
 		this.mb = new MessageBox();
-		this.wr = wr ;
-		this.rd = rd;
+		this.io  = io;
 	}
 	public boolean isExit() {
 		return exitState;
@@ -24,7 +19,6 @@ public class InnerState {
 	}
 	public void setCommand(String com) {
 		this.com = new Command(com);
-		wr.writeln(com+" ");
 	}
 	public void execCommand() {
 		switch(com.hesh) {
@@ -32,27 +26,20 @@ public class InnerState {
 				exitState = true;
 				break;
 			case 1:
-				wr.writeln(mb.getHelp());
+				io.writeln(mb.getHelp());
 				break;
 			case 2:
-				wr.writeln(mb.getChoiceOfMessenger());
-				wr.write(mb.getInputMessage());
-				String str = rd.read();
-				wr.writeln(str+" ");
-				switch(str) {
+				io.writeln(mb.getChoiceOfMessenger());
+				switch(io.read()) {
 					case "1" :
-						wr.writeln(mb.getWhatsappChoice());
-						wr.write(mb.getInputMessage());
-						userData = rd.read();
-						wr.writeln(userData+" " );
-						wr.writeln(mb.getYourInput() + userData );
+						io.writeln(mb.getWhatsappChoice());
+						userData = io.read();
 						exitState = true;
+						io.writeln(mb.getYourInput() + userData);
 						break;
 					case "2" :
-						wr.writeln(mb.getVkChoice());
-						userData = rd.read();
-						wr.write(mb.getInputMessage());
-						wr.writeln(userData+" ");
+						io.writeln(mb.getVkChoice());
+						userData = io.read();
 						exitState = true;
 						break;
 					default:
@@ -60,12 +47,8 @@ public class InnerState {
 				}
 				break;
 			default:
-				wr.writeln(mb.getWrongCommandMessage());
+				io.writeln(mb.getWrongCommandMessage());
 		}
-	}
-
-	public String getInputMessage(){
-		return mb.getInputMessage();
 	}
 	public String getHello(){
 		return mb.getHello();

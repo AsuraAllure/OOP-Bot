@@ -11,7 +11,6 @@ public class TestWriter implements Writer{
         testOut.append(str+'\n');
     }
     public void write(String str){
-
         testOut.append(str);
     }
     public String getTestOut()
