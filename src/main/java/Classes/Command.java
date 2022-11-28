@@ -1,50 +1,54 @@
 package Classes;
 
-import Enums.TypeCommand;
+import Enums.CommandType;
 
 public class Command {
-	public TypeCommand t;
-	public int hesh;
+	public boolean isCommandCorrect;
+	public CommandType commandType;
 	Command(String com){
 		switch(com) {
-			case "exit":
-				hesh = 0;
-				t = TypeCommand.CORRECT;
+            case "/start":
+                commandType = CommandType.START;
+                isCommandCorrect = true;
+                break;
+			case "/exit":
+                commandType = CommandType.EXIT;
+                isCommandCorrect = true;
 				break;
-			case "help":
-				hesh = 1;
-				t = TypeCommand.CORRECT;
+			case "/help":
+                commandType = CommandType.HELP;
+                isCommandCorrect = true;
 				break;
-			case "choose":
-				hesh = 2;
-				t = TypeCommand.CORRECT;
+			case "/choose":
+                commandType = CommandType.CHOOSE;
+                isCommandCorrect = true;
 				break;
+            case "/vk":
+                commandType = CommandType.VK;
+                isCommandCorrect = true;
+                break;
+            case "/wa":
+                commandType = CommandType.WA;
+                isCommandCorrect = true;
+                break;
 			default:
-				hesh = -1;
-				t = TypeCommand.INCORRECT;
+                isCommandCorrect = false;
 		}
 	}
-	Command(){
-		t = TypeCommand.NULLCOMMAND;
-		hesh = -1;
-	}
-	public boolean correct() {
-		if (t == TypeCommand.CORRECT)
-			return true;
-		return false;
-	}
 	public String toString() {
-		if (t == TypeCommand.NULLCOMMAND)
-			return "Null";
-		if (t == TypeCommand.INCORRECT)
+		if (!isCommandCorrect)
 			return "Incorrect";
-		switch(hesh){
-			case 0:
+		switch(commandType){
+			case EXIT:
 				return "exit";
-			case 1:
+			case HELP:
 				return "help";
-			case 2:
+			case CHOOSE:
 				return "choose";
+            case VK:
+                return "vk";
+            case WA:
+                return "wa";
 		}
 		return "Unknown error";
 	}
