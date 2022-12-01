@@ -25,6 +25,12 @@ public class Command {
             case "/wha":
                 commandType = CommandType.WA;
                 break;
+			case "/count_unseen_chats":
+				commandType = CommandType.VK_CHOOSE_OPERATION;
+				break;
+			case "/return":
+				commandType = CommandType.RETURN;
+				break;
 			default:
                 commandType = CommandType.NOT_CORRECT;
 		}

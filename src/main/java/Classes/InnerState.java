@@ -1,5 +1,8 @@
 package Classes;
 
+import Console.ConsoleBot;
+import VK.VK;
+import VK.TEST_VK;
 import Enums.State;
 
 public class InnerState {
@@ -7,12 +10,21 @@ public class InnerState {
 	private final MessageBox mb;
 	private String userToken;
     private String userTelephone;
+
+    private VK vk;
     private State prevState;
 	public InnerState(){
 		exitState = false;
 		this.mb = new MessageBox();
         this.prevState = State.EMPTY;
+        this.vk = new VK();
 	}
+    public InnerState(ConsoleBot a){
+        exitState = false;
+        this.mb = new MessageBox();
+        this.prevState = State.EMPTY;
+        this.vk = new TEST_VK();
+    }
 	public boolean isExit() {
 		return exitState;
 	}
@@ -23,6 +35,9 @@ public class InnerState {
             case EMPTY:
                 com = new Command(input);
                 switch (com.commandType){
+                    case RETURN:
+                        prevState = State.EMPTY;
+                        return mb.getStart();
                     case START:
                         return mb.getStart();
                     case HELP:
@@ -38,9 +53,14 @@ public class InnerState {
                         return mb.getIncorrectCommand();
                 }
                 return mb.getIncorrectCommand();
+
             case CHOOSE:
                 com = new Command(input);
                 switch (com.commandType){
+
+                    case RETURN:
+                        prevState = State.EMPTY;
+                        return mb.getStart();
                     case VK:
                         prevState = State.WAIT_VK_TOKEN;
                         return mb.getVkToken();
@@ -55,11 +75,38 @@ public class InnerState {
                         return mb.getIncorrectCommand();
                 }
                 return mb.getIncorrectCommand();
+
             case WAIT_VK_TOKEN:
                 userToken = input;
-                // что-то делаем в вк
-                exitState = true;
-                return mb.getGoodbye();
+                if (input.contentEquals( "/exit")){
+                    exitState = true;
+                    return mb.getGoodbye();
+                }
+                if (input.contentEquals( "/return")){
+                    prevState = State.EMPTY;
+                    return mb.getStart();
+                }
+                if (!vk.set_token(userToken)){
+                    prevState = State.WAIT_VK_COMMAND;
+                    return mb.getVKCommand();
+                }
+                return mb.getIncorrectToken();
+
+
+            case WAIT_VK_COMMAND:
+                com = new Command(input);
+                switch(com.commandType) {
+                    case EXIT:
+                        exitState = true;
+                        return mb.getGoodbye();
+                    case RETURN:
+                        prevState = State.EMPTY;
+                        return mb.getStart();
+                    case VK_CHOOSE_OPERATION :
+                        prevState = State.EMPTY;
+                        return mb.count_chats() + vk.count_unseen_chats() + mb.getVKCommand2();
+                }
+                return mb.getIncorrectCommand();
             case WAIT_WA_TELEPHONE:
                 userTelephone = input;
                 exitState = true;

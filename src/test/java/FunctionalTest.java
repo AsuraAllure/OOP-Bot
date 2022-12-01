@@ -1,4 +1,4 @@
-import Classes.ConsoleBot;
+import Console.ConsoleBot;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

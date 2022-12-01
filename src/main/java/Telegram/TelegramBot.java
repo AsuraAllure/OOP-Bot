@@ -9,8 +9,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class TelegramBot extends TelegramLongPollingBot {
-    final private String BOT_TOKEN = System.getenv("BOT_TOKEN");
-    final private String BOT_NAME = "CheckVKBot";
+    final private String BOT_TOKEN = "";
+    final private String BOT_NAME ="";
     final private InnerState is;
 
     public TelegramBot(Factory fc) {

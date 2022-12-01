@@ -1,5 +1,6 @@
-package Classes;
+package Console;
 
+import Classes.InnerState;
 import Interfaces.Factory;
 import Interfaces.Reader;
 import Interfaces.Writer;
@@ -11,7 +12,7 @@ public class ConsoleBot {
     public ConsoleBot(Factory fc){
         this.rd = fc.getReader();
         this.wr = fc.getWriter();
-        is = new InnerState();
+        is = new InnerState(this);
 
     }
     public void run() {
