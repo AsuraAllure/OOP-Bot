@@ -9,30 +9,24 @@ public class Command {
 		switch(com) {
             case "/start":
                 commandType = CommandType.START;
-                isCommandCorrect = true;
                 break;
 			case "/exit":
                 commandType = CommandType.EXIT;
-                isCommandCorrect = true;
 				break;
 			case "/help":
                 commandType = CommandType.HELP;
-                isCommandCorrect = true;
 				break;
 			case "/choose":
                 commandType = CommandType.CHOOSE;
-                isCommandCorrect = true;
 				break;
             case "/vk":
                 commandType = CommandType.VK;
-                isCommandCorrect = true;
                 break;
-            case "/wa":
+            case "/wha":
                 commandType = CommandType.WA;
-                isCommandCorrect = true;
                 break;
 			default:
-                isCommandCorrect = false;
+                commandType = CommandType.NOT_CORRECT;
 		}
 	}
 	public String toString() {
@@ -48,7 +42,7 @@ public class Command {
             case VK:
                 return "vk";
             case WA:
-                return "wa";
+                return "wha";
 		}
 		return "Unknown error";
 	}

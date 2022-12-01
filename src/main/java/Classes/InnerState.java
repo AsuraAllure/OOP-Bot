@@ -5,8 +5,7 @@ import Enums.State;
 public class InnerState {
 	private boolean exitState;
 	private final MessageBox mb;
-	private String userLogin;
-    private String userPassword;
+	private String userToken;
     private String userTelephone;
     private State prevState;
 	public InnerState(){
@@ -32,34 +31,40 @@ public class InnerState {
                         prevState = State.CHOOSE;
                         return mb.getChoiceOfMessenger();
                     case EXIT:
+                        exitState = true;
                         return mb.getGoodbye();
+                    case NOT_CORRECT:
+                        prevState = State.EMPTY;
+                        return mb.getIncorrectCommand();
                 }
                 return mb.getIncorrectCommand();
             case CHOOSE:
                 com = new Command(input);
                 switch (com.commandType){
                     case VK:
-                        prevState = State.WAIT_VK_LOGIN;
-                        return mb.getVkLogin();
+                        prevState = State.WAIT_VK_TOKEN;
+                        return mb.getVkToken();
                     case WA:
                         prevState = State.WAIT_WA_TELEPHONE;
                         return mb.getWhatsappChoice();
+                    case EXIT:
+                        exitState = true;
+                        return mb.getGoodbye();
+                    case NOT_CORRECT:
+                        prevState = State.CHOOSE;
+                        return mb.getIncorrectCommand();
                 }
                 return mb.getIncorrectCommand();
-            case WAIT_VK_LOGIN:
-                userLogin = input;
-                prevState = State.WAIT_VK_PASSWORD;
-                return mb.getVkPassword();
-            case WAIT_VK_PASSWORD:
-                userPassword = input;
-                //что-то длеаем в вк
+            case WAIT_VK_TOKEN:
+                userToken = input;
+                // что-то делаем в вк
                 exitState = true;
-                return null;
+                return mb.getGoodbye();
             case WAIT_WA_TELEPHONE:
                 userTelephone = input;
                 exitState = true;
                 //что-то делаем в whatsApp
-                return null;
+                return mb.getGoodbye();
         }
         return getIncorrectCommand();
 	}

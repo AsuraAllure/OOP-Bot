@@ -18,8 +18,8 @@ public class Main {
         /* Вариант метода main(String[] args) для консольной версии бота
         import Console.ConsoleFactory;
 
-		Bot b1 = new Bot(new ConsoleFactory());
-		b1.run();
+        ConsoleBot b1 = new ConsoleBot(new ConsoleFactory());
+        b1.run();
          */
 	}
 }
