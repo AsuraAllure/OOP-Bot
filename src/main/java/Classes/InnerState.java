@@ -21,11 +21,11 @@ public class InnerState {
     this.vk = new VK();
   }
 
-  public InnerState(ConsoleBot a) {
+  public InnerState(TEST_VK a) {
     exitState = false;
     this.mb = new MessageBox();
     this.prevState = State.EMPTY;
-    this.vk = new TEST_VK();
+    this.vk = a;
   }
 
   public boolean isExit() {
