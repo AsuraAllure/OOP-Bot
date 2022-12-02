@@ -7,17 +7,17 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class Main {
-	public static void main(String[] args) {
-        try {
-            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-            telegramBotsApi.registerBot(new TelegramBot(new TelegramFactory()));
-        } catch (
-                TelegramApiException e) {
-            e.printStackTrace();
-        }
 
+  public static void main(String[] args) {
+    try {
+      TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+      telegramBotsApi.registerBot(new TelegramBot(new TelegramFactory()));
+    } catch (
+        TelegramApiException e) {
+      e.printStackTrace();
+    }
 
-		// Вариант метода main(String[] args) для консольной версии бота
+    // Вариант метода main(String[] args) для консольной версии бота
         /*
         import Console.ConsoleBot;
         import Console.ConsoleFactory;
@@ -25,5 +25,5 @@ public class Main {
         ConsoleBot b1 = new ConsoleBot(new ConsoleFactory());
         b1.run();
         */
-	}
+  }
 }
