@@ -53,7 +53,6 @@ public class InnerState {
                         return mb.getIncorrectCommand();
                 }
                 return mb.getIncorrectCommand();
-
             case CHOOSE:
                 com = new Command(input);
                 switch (com.commandType){
@@ -75,7 +74,6 @@ public class InnerState {
                         return mb.getIncorrectCommand();
                 }
                 return mb.getIncorrectCommand();
-
             case WAIT_VK_TOKEN:
                 userToken = input;
                 if (input.contentEquals( "/exit")){
@@ -91,8 +89,6 @@ public class InnerState {
                     return mb.getVKCommand();
                 }
                 return mb.getIncorrectToken();
-
-
             case WAIT_VK_COMMAND:
                 com = new Command(input);
                 switch(com.commandType) {
