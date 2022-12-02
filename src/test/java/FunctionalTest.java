@@ -1,17 +1,28 @@
 import static org.junit.Assert.assertEquals;
 
 import Console.ConsoleBot;
+import Classes.InnerState;
+import Console.ConsoleFactory;
 import org.junit.Test;
 
 public class FunctionalTest {
 
+  private String testOutput(InnerState s, String nameTestFile) {
+    TestReader tr = new TestReader(nameTestFile);
+    String result = "";
+    do {
+      String input = tr.read();
+      String output = s.execCommand(input);
+      result += output + '\n';
+    } while (!s.isExit());
+
+    return result;
+  }
+
   @Test
   public void Test1() {
-    TestFactory tf = new TestFactory("src/test/java/Test1");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test1");
     String expectOutput = """
         Привет!
         Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
@@ -40,11 +51,8 @@ public class FunctionalTest {
 
   @Test
   public void Test2() {
-    TestFactory tf = new TestFactory("src/test/java/Test2");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test2");
     String expectOutput = """
         Некорректный запрос. Попробую снова)
         Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
@@ -63,11 +71,8 @@ public class FunctionalTest {
 
   @Test
   public void Test3() {
-    TestFactory tf = new TestFactory("src/test/java/Test3");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test3");
     String expectOutput = """
         Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
                         
@@ -86,11 +91,8 @@ public class FunctionalTest {
 
   @Test
   public void Test4() {
-    TestFactory tf = new TestFactory("src/test/java/Test4");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test4");
     String expectOutput = """
         Некорректный запрос. Попробую снова)
         Завершение работы.
@@ -101,11 +103,8 @@ public class FunctionalTest {
 
   @Test
   public void Test5() {
-    TestFactory tf = new TestFactory("src/test/java/Test5");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test5");
     String expectOutput = """
         Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
         Завершение работы.
@@ -115,11 +114,8 @@ public class FunctionalTest {
 
   @Test
   public void Test6() {
-    TestFactory tf = new TestFactory("src/test/java/Test6");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test6");
     String expectOutput = """
         Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
         Перейди по ссылке https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74,  введите токен, который находится в url-адрессе
@@ -142,11 +138,8 @@ public class FunctionalTest {
 
   @Test
   public void Test7() {
-    TestFactory tf = new TestFactory("src/test/java/Test7");
-    ConsoleBot testBot = new ConsoleBot(tf);
-    testBot.run();
-
-    String testOutput = tf.getWriter().getTestOut();
+    InnerState in = new InnerState(new ConsoleBot(new ConsoleFactory()));
+    String testOutput = testOutput(in, "src/test/java/Test7");
     String expectOutput = """
         Некорректный запрос. Попробую снова)
         Привет!
@@ -160,7 +153,7 @@ public class FunctionalTest {
         Если хочешь еще раз увидеть справку, жми /help.
         Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
         Перейди по ссылке https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74,  введите токен, который находится в url-адрессе
-        На данный момент есть только команда /count_unseen_chats
+        Некорректный ввод токена. Попробуйте снова
         Завершение работы.
         """;
     assertEquals(expectOutput, testOutput);
