@@ -24,14 +24,14 @@ public class Command {
       case "/vk":
         commandType = CommandType.VK;
         break;
-      case "/wha":
-        commandType = CommandType.WA;
-        break;
       case "/count_unseen_chats":
         commandType = CommandType.VK_CHOOSE_OPERATION;
         break;
       case "/return":
         commandType = CommandType.RETURN;
+        break;
+      case "/blackjack":
+        commandType = CommandType.BLACKJACK;
         break;
       default:
         commandType = CommandType.NOT_CORRECT;
@@ -51,8 +51,6 @@ public class Command {
         return "choose";
       case VK:
         return "vk";
-      case WA:
-        return "wha";
     }
     return "Unknown error";
   }
