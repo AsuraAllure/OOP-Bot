@@ -9,8 +9,6 @@ public class BlackJack {
   private User user;
    private BlackJackDeck deck;
   private Boolean gameState;
-
-  private long seed;
   public BlackJack() {
     try {
       deck = new BlackJackDeck();
@@ -20,7 +18,6 @@ public class BlackJack {
     dealer = new Dealer();
     user = new User();
     gameState = false;
-    seed = -1;
   }
 
   public void startPlay() {
