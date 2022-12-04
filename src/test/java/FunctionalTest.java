@@ -1,9 +1,9 @@
 import static org.junit.Assert.assertEquals;
 
 import Classes.InnerState;
+import Classes.MessageBox;
 import Classes.TEST_OBJECT;
 import org.junit.Test;
-import Classes.MessageBox;
 
 //  Для тестирования опции блэкджека необходимо установить seed, для контролируемого поведения
 
@@ -13,8 +13,17 @@ public class FunctionalTest {
   private String testOutput(InnerState s, String nameTestFile) {
     TestReader tr = new TestReader(nameTestFile);
     String result = "";
+    String input = "";
     do {
-      String input = tr.read();
+      try {
+        input = tr.read();
+      } catch (IndexOutOfBoundsException e) {
+
+        break;
+      }
+      if (input == "") {
+        input = "/exit";
+      }
       String output = s.execCommand(input);
       result += output + '\n';
     } while (!s.isExit());
@@ -27,9 +36,9 @@ public class FunctionalTest {
     InnerState in = new InnerState(new TEST_OBJECT(12634));  // Сид помещать в TEST_OBJECT
     MessageBox mb = new MessageBox();
     String testOutput = testOutput(in, "src/test/java/Test1");
-    String realExpectedOutput = mb.getStart() + '\n' + mb.getHelp() +'\n' +
+    String realExpectedOutput = mb.getStart() + '\n' + mb.getHelp() + '\n' +
         mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
-        mb.getVKCommand()+'\n' + mb.countChatsMessage() + "2" + mb.getVKCommand2() + '\n'+
+        mb.getVKCommand() + '\n' + mb.countChatsMessage() + "2" + mb.getVKCommand2() + '\n' +
         mb.getGoodbye() + '\n';
 
     assertEquals(realExpectedOutput, testOutput);
@@ -39,19 +48,11 @@ public class FunctionalTest {
   public void Test2() {
     InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test2");
-    String expectOutput = """
-        Некорректный запрос. Попробую снова)
-        Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
-                        
-        В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WhatsApp и Вконтакте,
-        показывать их содержимое и даже отвечать на них (может быть:) ).
-                        
-        Но пока я могу исполнять только одну команду. Жми /choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Для подключения к WhatsApp введи свой номер телефона в формате: "9122222222".
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    MessageBox mb = new MessageBox();
+    String realExpectedOutput = mb.getIncorrectCommand() + '\n' + mb.getHelp() + '\n' +
+        mb.getChoiceOfMessenger() + '\n' + mb.getIncorrectCommand() + '\n' +
+        mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
+    assertEquals(realExpectedOutput, testOutput);
   }
 
 
@@ -59,19 +60,11 @@ public class FunctionalTest {
   public void Test3() {
     InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test3");
-    String expectOutput = """
-        Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
-                        
-        В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WhatsApp и Вконтакте,
-        показывать их содержимое и даже отвечать на них (может быть:) ).
-                        
-        Но пока я могу исполнять только одну команду. Жми /choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
-        Некорректный запрос. Попробую снова)
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Для подключения к WhatsApp введи свой номер телефона в формате: "9122222222".
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    MessageBox mb = new MessageBox();
+    String realExpectedOutput = mb.getHelp() + '\n' + mb.getIncorrectCommand() + '\n' +
+        mb.getChoiceOfMessenger() + '\n' + mb.getIncorrectCommand() + '\n' +
+        mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
+    assertEquals(realExpectedOutput, testOutput);
   }
 
 
@@ -79,11 +72,10 @@ public class FunctionalTest {
   public void Test4() {
     InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test4");
-    String expectOutput = """
-        Некорректный запрос. Попробую снова)
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    MessageBox mb = new MessageBox();
+    String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
+
+    assertEquals(realExpectedOut, testOutput);
   }
 
 
@@ -91,57 +83,32 @@ public class FunctionalTest {
   public void Test5() {
     InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test5");
-    String expectOutput = """
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    MessageBox mb = new MessageBox();
+    String realExpectedOut = mb.getChoiceOfMessenger() + '\n' + mb.getGoodbye() + '\n';
+    assertEquals(realExpectedOut, testOutput);
   }
 
   @Test
   public void Test6() {
     InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test6");
-    String expectOutput = """
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Перейди по ссылке https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74,  введите токен, который находится в url-адрессе
-        На данный момент есть только команда /count_unseen_chats
-        Количество чатов с непрочитанными сообщениями: 2
-        Нажмите /choose или /help для продолжения
-        Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
-                        
-        В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WhatsApp и Вконтакте,
-        показывать их содержимое и даже отвечать на них (может быть:) ).
-                        
-        Но пока я могу исполнять только одну команду. Жми /choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Некорректный запрос. Попробую снова)
-        Для подключения к WhatsApp введи свой номер телефона в формате: "9122222222".
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    MessageBox mb = new MessageBox();
+    String realExpectedOut = mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
+        mb.getVKCommand() + '\n' + mb.countChatsMessage() +
+        "2" + mb.getVKCommand2() + '\n' + mb.getHelp() + '\n' + mb.getChoiceOfMessenger() + '\n' +
+        mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand()
+        + '\n';
+    assertEquals(realExpectedOut, testOutput);
   }
 
   @Test
   public void Test7() {
     InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test7");
-    String expectOutput = """
-        Некорректный запрос. Попробую снова)
-        Привет!
-        Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
-                        
-        В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WhatsApp и Вконтакте,
-        показывать их содержимое и даже отвечать на них (может быть:) ).
-                        
-        Но пока я могу исполнять только одну команду. Жми /choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
-                        
-        Если хочешь еще раз увидеть справку, жми /help.
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Перейди по ссылке https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74,  введите токен, который находится в url-адрессе
-        Некорректный ввод токена. Попробуйте снова
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    MessageBox mb = new MessageBox();
+    String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getStart() + '\n' +
+        mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' + mb.getIncorrectToken() +
+        '\n' + mb.getGoodbye() + '\n';
+    assertEquals(realExpectedOut, testOutput);
   }
 }
