@@ -4,6 +4,9 @@ import Classes.InnerState;
 import Classes.TEST_OBJECT;
 import org.junit.Test;
 
+//  Для тестирования опции блэкджека необходимо установить seed, для контролируемого поведения
+
+
 public class FunctionalTest {
 
   private String testOutput(InnerState s, String nameTestFile) {
@@ -20,7 +23,8 @@ public class FunctionalTest {
 
   @Test
   public void Test1() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TEST_OBJECT(12634));  // Сид помещать в TEST_OBJECT
+
     String testOutput = testOutput(in, "src/test/java/Test1");
     String expectOutput = """
         Привет!
