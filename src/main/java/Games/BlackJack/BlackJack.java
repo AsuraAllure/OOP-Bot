@@ -35,7 +35,7 @@ public class BlackJack {
   }
 
   public String distribution() {
-    String mess = "Начинается партия.\nДля добора карт нажмите /take, если вы не хотите добирать, нажмите /wait\nВ случае выпадение туза, введите его значение: 1 или 11\n";
+    String mess = "Начинается партия.\nВ случае выпадение туза, введите его значение: 1 или 11\n";
     play("/take");
     mess += play("/take");
     return mess;
@@ -66,7 +66,7 @@ public class BlackJack {
 
     if (user.hasAce()) {
       return "Ваши карты:\n" + user.showHand() + "Вам выпал " + user.getAce().toString()
-          + ". Определите его значение";
+          + ". Определите его значение 1/11";
     }
 
     String stepMessage =
@@ -74,7 +74,7 @@ public class BlackJack {
             + user.showHand() + "Счет Игрока: " + user.calcScore();
 
     if (!gameState) {
-      return stepMessage;
+      return stepMessage + "\n/wait - остановить добор , /take - добрать карту";
     }
 
     String mes = stepMessage + ". Cчёт ведущего: " + dealer.calcScore();
