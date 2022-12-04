@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.Random;
 
 public class Deck {
+
   protected final Card[] deck;
   protected final int size;
-  private int countUsing;
   protected long seed;
+  private int countUsing;
+
   public Deck(TypeDeck sizeDeck) {
     if (sizeDeck == TypeDeck.SMALL) {
       size = 36;
@@ -57,10 +59,11 @@ public class Deck {
   // Математически обоснованное равномерное распределение.
   private void shuffle() {
     Random genR;
-    if (seed == -1)
+    if (seed == -1) {
       genR = new Random(new Date().getTime());
-    else
+    } else {
       genR = new Random(seed);
+    }
     for (int i = 0; i < size; i++) {
       Card temp = new Card(deck[i]);
       int j = genR.nextInt(size - 1);
@@ -73,7 +76,8 @@ public class Deck {
     shuffle();
     countUsing = 0;
   }
-  public void setSeed(long a){
+
+  public void setSeed(long a) {
     seed = a;
     initDeck();
     shuffle();

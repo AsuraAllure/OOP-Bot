@@ -1,6 +1,7 @@
 package Classes;
 
-class MessageBox {
+public class MessageBox {
+
   public String getMainMenuMessage() {
     return """
         Главное меню.
@@ -9,6 +10,7 @@ class MessageBox {
           Игра в блэкджек /blackjack
         """;
   }
+
   public String getHelp() {
     return """
         /exit
@@ -46,14 +48,17 @@ class MessageBox {
 
     return "Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте, /blackjack";
   }
+
   public String getVkToken() {
     return "Перейди по ссылке"
         + " https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74, "
         + " введите токен, который находится в url-адрессе";
   }
+
   public String getIncorrectToken() {
     return "Некорректный ввод токена. Попробуйте снова";
   }
+
   public String getVKCommand() {
     return "На данный момент есть только команда /count_unseen_chats";
   }
@@ -66,7 +71,7 @@ class MessageBox {
     return "Количество чатов с непрочитанными сообщениями: ";
   }
 
-  public String getEndBlackjack(){
+  public String getEndBlackjack() {
     return "Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню";
   }
 }

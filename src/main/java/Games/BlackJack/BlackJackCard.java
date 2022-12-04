@@ -5,15 +5,19 @@ import Enums.Games.Suit;
 import Enums.Games.Value;
 
 public class BlackJackCard extends Card {
+
   private int score;
+
   public BlackJackCard(Suit s, Value v) {
     super(s, v);
     convertValueToScore();
   }
+
   public BlackJackCard(Card c) {
     super(c.getSuit(), c.getValue());
     convertValueToScore();
   }
+
   private void convertValueToScore() {
     switch (value) {
       case C2:
@@ -64,8 +68,9 @@ public class BlackJackCard extends Card {
 
   @Override
   public String toString() {
-    if (score != -1)
+    if (score != -1) {
       return super.toString() + " " + score;
+    }
     return super.toString();
   }
 }

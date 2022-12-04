@@ -5,10 +5,11 @@ import Enums.Games.BlackJack.GameStateBlackJack;
 
 public class BlackJack {
 
-  private Dealer dealer;
-  private User user;
-   private BlackJackDeck deck;
+  private final Dealer dealer;
+  private final User user;
+  private BlackJackDeck deck;
   private Boolean gameState;
+
   public BlackJack() {
     try {
       deck = new BlackJackDeck();
@@ -27,9 +28,10 @@ public class BlackJack {
     deck.refresh();
   }
 
-  public void setSeed(long a){
+  public void setSeed(long a) {
     deck.setSeed(a);
   }
+
   public boolean getState() {
     return gameState;
   }

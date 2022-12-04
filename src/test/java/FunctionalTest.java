@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 import Classes.InnerState;
 import Classes.TEST_OBJECT;
 import org.junit.Test;
+import Classes.MessageBox;
 
 //  Для тестирования опции блэкджека необходимо установить seed, для контролируемого поведения
 
@@ -24,32 +25,14 @@ public class FunctionalTest {
   @Test
   public void Test1() {
     InnerState in = new InnerState(new TEST_OBJECT(12634));  // Сид помещать в TEST_OBJECT
-
+    MessageBox mb = new MessageBox();
     String testOutput = testOutput(in, "src/test/java/Test1");
-    String expectOutput = """
-        Привет!
-        Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
-                        
-        В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WhatsApp и Вконтакте,
-        показывать их содержимое и даже отвечать на них (может быть:) ).
-                        
-        Но пока я могу исполнять только одну команду. Жми /choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
-                        
-        Если хочешь еще раз увидеть справку, жми /help.
-        Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
-                        
-        В дальнейшем я смогу уведомлять о сообщениях, которые пришли тебе в WhatsApp и Вконтакте,
-        показывать их содержимое и даже отвечать на них (может быть:) ).
-                        
-        Но пока я могу исполнять только одну команду. Жми /choose, чтобы выбрать мессенджер, который тебя сейчас интересует.
-        Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
-        Перейди по ссылке https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74,  введите токен, который находится в url-адрессе
-        На данный момент есть только команда /count_unseen_chats
-        Количество чатов с непрочитанными сообщениями: 2
-        Нажмите /choose или /help для продолжения
-        Завершение работы.
-        """;
-    assertEquals(expectOutput, testOutput);
+    String realExpectedOutput = mb.getStart() + '\n' + mb.getHelp() +'\n' +
+        mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
+        mb.getVKCommand()+'\n' + mb.countChatsMessage() + "2" + mb.getVKCommand2() + '\n'+
+        mb.getGoodbye() + '\n';
+
+    assertEquals(realExpectedOutput, testOutput);
   }
 
   @Test

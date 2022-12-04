@@ -12,10 +12,9 @@ public class Dealer extends Player {
     }
 
     if (calcScore() >= 17) {
-      waitStep();
+      endStep();
       return;
     }
-
 
     try {
       takeCard(new BlackJackCard(deck.getCard()));

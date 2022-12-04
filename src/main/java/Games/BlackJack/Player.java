@@ -11,14 +11,16 @@ public class Player {
   protected PlayerState st;
   protected GameStateBlackJack gSt;
   protected int curScore;
-  public GameStateBlackJack getGST(){
-    return gSt;
-  }
+
   public Player() {
     hand = new LinkedList<BlackJackCard>();
     gSt = GameStateBlackJack.NULL;
     st = PlayerState.NULL;
     curScore = 0;
+  }
+
+  public GameStateBlackJack getGST() {
+    return gSt;
   }
 
   public String showHand() {
@@ -28,6 +30,7 @@ public class Player {
     }
     return res;
   }
+
   public int calcScore() {
     return curScore;
   }
@@ -36,9 +39,6 @@ public class Player {
     return st == PlayerState.WAIT;
   }
 
-  public void waitStep(){
-    st = PlayerState.WAIT;
-  }
   public void refresh() {
     hand.clear();
     st = PlayerState.TAKE_CARD;
@@ -49,6 +49,7 @@ public class Player {
   public void endStep() {
     st = PlayerState.WAIT;
   }
+
   public void takeCard(BlackJackCard card) throws AceException {
     int a = card.getScore();
     hand.add(card);
