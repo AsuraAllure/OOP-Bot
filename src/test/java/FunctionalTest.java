@@ -1,9 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
 import Classes.InnerState;
-import Console.ConsoleBot;
-import Console.ConsoleFactory;
-import VK.TEST_VK;
+import Classes.TEST_OBJECT;
 import org.junit.Test;
 
 public class FunctionalTest {
@@ -22,7 +20,7 @@ public class FunctionalTest {
 
   @Test
   public void Test1() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test1");
     String expectOutput = """
         Привет!
@@ -52,7 +50,7 @@ public class FunctionalTest {
 
   @Test
   public void Test2() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test2");
     String expectOutput = """
         Некорректный запрос. Попробую снова)
@@ -72,7 +70,7 @@ public class FunctionalTest {
 
   @Test
   public void Test3() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test3");
     String expectOutput = """
         Я бот, который облегчит тебе работу с WhatsApp и Вконтакте)
@@ -92,7 +90,7 @@ public class FunctionalTest {
 
   @Test
   public void Test4() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test4");
     String expectOutput = """
         Некорректный запрос. Попробую снова)
@@ -104,7 +102,7 @@ public class FunctionalTest {
 
   @Test
   public void Test5() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test5");
     String expectOutput = """
         Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
@@ -115,7 +113,7 @@ public class FunctionalTest {
 
   @Test
   public void Test6() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test6");
     String expectOutput = """
         Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте.
@@ -139,7 +137,7 @@ public class FunctionalTest {
 
   @Test
   public void Test7() {
-    InnerState in = new InnerState(new TEST_VK());
+    InnerState in = new InnerState(new TEST_OBJECT());
     String testOutput = testOutput(in, "src/test/java/Test7");
     String expectOutput = """
         Некорректный запрос. Попробую снова)

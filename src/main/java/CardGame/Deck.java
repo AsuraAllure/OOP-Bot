@@ -10,6 +10,7 @@ public class Deck {
   protected final Card[] deck;
   protected final int size;
   private int countUsing;
+  protected long seed;
   public Deck(TypeDeck sizeDeck) {
     if (sizeDeck == TypeDeck.SMALL) {
       size = 36;
@@ -18,6 +19,7 @@ public class Deck {
     }
     deck = new Card[size];
     countUsing = 0;
+    seed = -1;
     initDeck();
     shuffle();
   }
@@ -54,7 +56,11 @@ public class Deck {
 
   // Математически обоснованное равномерное распределение.
   private void shuffle() {
-    Random genR = new Random(new Date().getTime());
+    Random genR;
+    if (seed == -1)
+      genR = new Random(new Date().getTime());
+    else
+      genR = new Random(seed);
     for (int i = 0; i < size; i++) {
       Card temp = new Card(deck[i]);
       int j = genR.nextInt(size - 1);
@@ -66,6 +72,9 @@ public class Deck {
   public void refresh() {
     shuffle();
     countUsing = 0;
+  }
+  public void setSeed(long a){
+    seed = a;
   }
 
   public void printDeck() {

@@ -2,8 +2,8 @@ package Classes;
 
 import Enums.State;
 import Games.BlackJack.BlackJack;
-import VK.TEST_VK;
 import VK.VK;
+import VK.TEST_VK;
 
 public class InnerState {
   private final MessageBox mb;
@@ -11,7 +11,6 @@ public class InnerState {
   private final BlackJack bj;
   private boolean exitState;
   private String userToken;
-  private String userTelephone;
   private State prevState;
 
   public InnerState() {
@@ -22,12 +21,13 @@ public class InnerState {
     this.bj = new BlackJack();
   }
 
-  public InnerState(TEST_VK a) {
+  public InnerState(TEST_OBJECT a) {
     exitState = false;
     this.mb = new MessageBox();
     this.prevState = State.EMPTY;
-    this.vk = a;
+    this.vk = new TEST_VK();
     this.bj = new BlackJack();
+    this.bj.setSeed(a.getSeed());
   }
 
   public boolean isExit() {

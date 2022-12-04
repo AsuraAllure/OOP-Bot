@@ -4,7 +4,7 @@ import Classes.InnerState;
 import Interfaces.Factory;
 import Interfaces.Reader;
 import Interfaces.Writer;
-import VK.TEST_VK;
+import Classes.TEST_OBJECT;
 
 public class ConsoleBot {
 
@@ -15,7 +15,7 @@ public class ConsoleBot {
   public ConsoleBot(Factory fc) {
     this.rd = fc.getReader();
     this.wr = fc.getWriter();
-    is = new InnerState(new TEST_VK());
+    is = new InnerState(new TEST_OBJECT());
 
   }
 

@@ -5,11 +5,12 @@ import Enums.Games.BlackJack.GameStateBlackJack;
 
 public class BlackJack {
 
-  Dealer dealer;
-  User user;
-  BlackJackDeck deck;
-  Boolean gameState;
+  private Dealer dealer;
+  private User user;
+   private BlackJackDeck deck;
+  private Boolean gameState;
 
+  private long seed;
   public BlackJack() {
     try {
       deck = new BlackJackDeck();
@@ -19,6 +20,7 @@ public class BlackJack {
     dealer = new Dealer();
     user = new User();
     gameState = false;
+    seed = -1;
   }
 
   public void startPlay() {
@@ -28,6 +30,9 @@ public class BlackJack {
     deck.refresh();
   }
 
+  public void setSeed(long a){
+    deck.setSeed(a);
+  }
   public boolean getState() {
     return gameState;
   }
@@ -93,7 +98,7 @@ public class BlackJack {
 
   private int compare(Player us, Player deal) {
     if (us.getGST() != GameStateBlackJack.OVERFLOW) {
-      if (us.calcScore() > deal.calcScore()) {
+      if (us.calcScore() > deal.calcScore() || deal.getGST() == GameStateBlackJack.OVERFLOW) {
         return 1;
       }
     }
