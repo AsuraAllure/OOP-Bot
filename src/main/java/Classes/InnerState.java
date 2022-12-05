@@ -3,7 +3,7 @@ package Classes;
 import Enums.State;
 import Games.BlackJack.BlackJack;
 import VK.VK;
-import VK.TEST_VK;
+import VK.TestVK;
 
 public class InnerState {
   private final MessageBox mb;
@@ -21,11 +21,11 @@ public class InnerState {
     this.bj = new BlackJack();
   }
 
-  public InnerState(TEST_OBJECT a) {
+  public InnerState(TestObject a) {
     exitState = false;
     this.mb = new MessageBox();
     this.prevState = State.EMPTY;
-    this.vk = new TEST_VK();
+    this.vk = new TestVK();
     this.bj = new BlackJack();
     this.bj.setSeed(a.getSeed());
   }

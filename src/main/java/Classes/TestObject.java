@@ -1,14 +1,14 @@
 package Classes;
 
-public class TEST_OBJECT {
+public class TestObject {
 
   private final long seed;
 
-  public TEST_OBJECT(long a) {
+  public TestObject(long a) {
     seed = a;
   }
 
-  public TEST_OBJECT() {
+  public TestObject() {
     seed = -1;
   }
 

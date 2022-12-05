@@ -2,7 +2,7 @@ import static org.junit.Assert.assertEquals;
 
 import Classes.InnerState;
 import Classes.MessageBox;
-import Classes.TEST_OBJECT;
+import Classes.TestObject;
 import org.junit.Test;
 
 //  Для тестирования опции блэкджека необходимо установить seed, для контролируемого поведения
@@ -33,7 +33,7 @@ public class FunctionalTest {
 
   @Test
   public void Test1() {
-    InnerState in = new InnerState(new TEST_OBJECT(12634));  // Сид помещать в TEST_OBJECT
+    InnerState in = new InnerState(new TestObject(12634));  // Сид помещать в TEST_OBJECT
     MessageBox mb = new MessageBox();
     String testOutput = testOutput(in, "src/test/java/Test1");
     String realExpectedOutput = mb.getStart() + '\n' + mb.getHelp() + '\n' +
@@ -46,7 +46,7 @@ public class FunctionalTest {
 
   @Test
   public void Test2() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test2");
     MessageBox mb = new MessageBox();
     String realExpectedOutput = mb.getIncorrectCommand() + '\n' + mb.getHelp() + '\n' +
@@ -58,7 +58,7 @@ public class FunctionalTest {
 
   @Test
   public void Test3() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test3");
     MessageBox mb = new MessageBox();
     String realExpectedOutput = mb.getHelp() + '\n' + mb.getIncorrectCommand() + '\n' +
@@ -70,7 +70,7 @@ public class FunctionalTest {
 
   @Test
   public void Test4() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test4");
     MessageBox mb = new MessageBox();
     String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
@@ -81,7 +81,7 @@ public class FunctionalTest {
 
   @Test
   public void Test5() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test5");
     MessageBox mb = new MessageBox();
     String realExpectedOut = mb.getChoiceOfMessenger() + '\n' + mb.getGoodbye() + '\n';
@@ -90,7 +90,7 @@ public class FunctionalTest {
 
   @Test
   public void Test6() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test6");
     MessageBox mb = new MessageBox();
     String realExpectedOut = mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
@@ -103,7 +103,7 @@ public class FunctionalTest {
 
   @Test
   public void Test7() {
-    InnerState in = new InnerState(new TEST_OBJECT());
+    InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test7");
     MessageBox mb = new MessageBox();
     String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getStart() + '\n' +
