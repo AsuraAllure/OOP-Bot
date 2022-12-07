@@ -10,27 +10,36 @@ public class Command {
   Command(String com) {
     switch (com) {
       case "/start":
+      case "start":
         commandType = CommandType.START;
         break;
       case "/exit":
+      case "exit":
         commandType = CommandType.EXIT;
         break;
       case "/help":
+      case "help":
         commandType = CommandType.HELP;
         break;
       case "/choose":
+      case "choose":
         commandType = CommandType.CHOOSE;
         break;
       case "/vk":
+      case "vk":
         commandType = CommandType.VK;
         break;
       case "/count_unseen_chats":
+      case "count_unseen_chats":
         commandType = CommandType.VK_CHOOSE_OPERATION;
         break;
       case "/return":
+      case "return":
+      case "RETURN":
         commandType = CommandType.RETURN;
         break;
       case "/blackjack":
+      case "blackjack":
         commandType = CommandType.BLACKJACK;
         break;
       default:

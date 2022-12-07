@@ -6,26 +6,26 @@ public class MessageBox {
     return """
         Главное меню.
         Доступные опции:
-          Количество сообщений в ВК /vk
-          Игра в блэкджек /blackjack
+            Количество сообщений в ВК /vk
+            Игра в блэкджек /blackjack
         """;
   }
 
   public String getHelp() {
     return """
-        /exit
-          Логический выход из бота.
-        /choose
-          Переход в главное меню
-          /vk
-            Переход к командам VK логики. При выполнении дает ссылку, при переходе
-            по которой можно будет получить токен для дальнейшей работы с VK
-            /count_unseen_chats
-              Возвращает количество чатов с непрочитанными сообщениями
-          /blackjack
-            Начинает игру в blackjack.
-        /return
-            Возвращает в главное меню.
+        --> /exit
+         Логический выход из бота.
+        --> /choose
+         Переход в главное меню
+            --> /vk
+               Переход к командам VK логики. При выполнении дает ссылку, при переходе
+               по которой можно будет получить токен для дальнейшей работы с VK
+                 --> /count_unseen_chats
+                       Возвращает количество чатов с непрочитанными сообщениями
+            --> /blackjack
+             Начинает игру в blackjack.
+        --> /return
+         Возвращает в главное меню.
         """;
   }
 
@@ -36,8 +36,8 @@ public class MessageBox {
   public String getStart() {
     return """
         Привет!
-        Для перехода в главное меню /choose.
-        Документация команд, /help.""";
+        Главное меню: /choose.
+        Документация команд: /help.""";
   }
 
   public String getGoodbye() {
@@ -46,7 +46,7 @@ public class MessageBox {
 
   public String getChoiceOfMessenger() {
 
-    return "Жми /wha, если хочешь подключиться к WhatsApp, /vk - к Вконтакте, /blackjack";
+    return "Жми /vk, если хочешь подключиться к Вконтакте\n   /blackjack, если хочешь начать игру в blackjack";
   }
 
   public String getVkToken() {
@@ -72,6 +72,6 @@ public class MessageBox {
   }
 
   public String getEndBlackjack() {
-    return "Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню";
+    return "\nВы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню";
   }
 }

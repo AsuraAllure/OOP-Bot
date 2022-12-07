@@ -37,7 +37,7 @@ public class BlackJack {
   }
 
   public String distribution() {
-    String mess = "Начинается партия.\nВ случае выпадение туза, введите его значение: 1 или 11\n";
+    String mess = "Начинается партия.\nВ каждой строке будет отображаться карта в формате:\nМАСТЬ ЗНАЧЕНИЕ НОМИНАЛ\n\nВ случае выпадение туза, введите его значение: 1 или 11\n\n";
     play("/take");
     mess += play("/take");
     return mess;
@@ -108,7 +108,8 @@ public class BlackJack {
   }
 
   private boolean isCommand(String input) {
-    return input.contentEquals("/wait") || input.contentEquals("/take");
+    return input.contentEquals("/wait") || input.contentEquals("/take")
+        ||input.contentEquals("wait") || input.contentEquals("take");
   }
 
   private void finishDealerStep() {

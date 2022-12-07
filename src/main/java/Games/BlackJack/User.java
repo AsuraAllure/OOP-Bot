@@ -22,11 +22,11 @@ public class User extends Player {
       return;
     }
 
-    if (choice.contentEquals("/wait")) {
+    if (choice.contentEquals("/wait") || choice.contentEquals("wait")) {
       st = PlayerState.WAIT;
       return;
     }
-    if (choice.contentEquals("/take")) {
+    if (choice.contentEquals("/take") || choice.contentEquals("take")) {
       try {
         takeCard(new BlackJackCard(deck.getCard()));
       } catch (AceException e) {

@@ -32,7 +32,5 @@ public class Dealer extends Player {
     } catch (GameException e) {
       throw new Error();
     }
-
-
   }
 }
