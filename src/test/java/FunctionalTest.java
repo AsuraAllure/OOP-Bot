@@ -34,10 +34,10 @@ public class FunctionalTest {
     InnerState in = new InnerState(new TestObject(12634));  // Сид помещать в TEST_OBJECT
     MessageBox mb = new MessageBox();
     String testOutput = testOutput(in, "src/test/java/Test1");
-    String realExpectedOutput = mb.getStart() + '\n' + mb.getHelp() + '\n' +
-        mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
-        mb.getVKCommand() + '\n' + mb.countChatsMessage() + "2" + mb.getVKCommand2() + '\n' +
-        mb.getGoodbye() + '\n';
+    String realExpectedOutput =
+        mb.getStart() + '\n' + mb.getHelp() + '\n' + mb.getChoiceOfMessenger() + '\n'
+            + mb.getVkToken() + '\n' + mb.getVKCommand() + '\n' + mb.countChatsMessage() + "2"
+            + mb.getVKCommand2() + '\n' + mb.getGoodbye() + '\n';
     assertEquals(realExpectedOutput, testOutput);
   }
 
@@ -46,9 +46,10 @@ public class FunctionalTest {
     InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test2");
     MessageBox mb = new MessageBox();
-    String realExpectedOutput = mb.getIncorrectCommand() + '\n' + mb.getHelp() + '\n' +
-        mb.getChoiceOfMessenger() + '\n' + mb.getIncorrectCommand() + '\n' +
-        mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
+    String realExpectedOutput =
+        mb.getIncorrectCommand() + '\n' + mb.getHelp() + '\n' + mb.getChoiceOfMessenger() + '\n'
+            + mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand() + '\n' + mb.getGoodbye()
+            + '\n';
     assertEquals(realExpectedOutput, testOutput);
   }
 
@@ -58,9 +59,10 @@ public class FunctionalTest {
     InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test3");
     MessageBox mb = new MessageBox();
-    String realExpectedOutput = mb.getHelp() + '\n' + mb.getIncorrectCommand() + '\n' +
-        mb.getChoiceOfMessenger() + '\n' + mb.getIncorrectCommand() + '\n' +
-        mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
+    String realExpectedOutput =
+        mb.getHelp() + '\n' + mb.getIncorrectCommand() + '\n' + mb.getChoiceOfMessenger() + '\n'
+            + mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand() + '\n' + mb.getGoodbye()
+            + '\n';
     assertEquals(realExpectedOutput, testOutput);
   }
 
@@ -90,11 +92,11 @@ public class FunctionalTest {
     InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test6");
     MessageBox mb = new MessageBox();
-    String realExpectedOut = mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
-        mb.getVKCommand() + '\n' + mb.countChatsMessage() +
-        "2" + mb.getVKCommand2() + '\n' + mb.getHelp() + '\n' + mb.getChoiceOfMessenger() + '\n' +
-        mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand()
-        + '\n';
+    String realExpectedOut =
+        mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' + mb.getVKCommand() + '\n'
+            + mb.countChatsMessage() + "2" + mb.getVKCommand2() + '\n' + mb.getHelp() + '\n'
+            + mb.getChoiceOfMessenger() + '\n' + mb.getIncorrectCommand() + '\n'
+            + mb.getIncorrectCommand() + '\n' + mb.getIncorrectCommand() + '\n';
     assertEquals(realExpectedOut, testOutput);
   }
 
@@ -103,9 +105,9 @@ public class FunctionalTest {
     InnerState in = new InnerState(new TestObject());
     String testOutput = testOutput(in, "src/test/java/Test7");
     MessageBox mb = new MessageBox();
-    String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getStart() + '\n' +
-        mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' + mb.getIncorrectToken() +
-        '\n' + mb.getGoodbye() + '\n';
+    String realExpectedOut =
+        mb.getIncorrectCommand() + '\n' + mb.getStart() + '\n' + mb.getChoiceOfMessenger() + '\n'
+            + mb.getVkToken() + '\n' + mb.getIncorrectToken() + '\n' + mb.getGoodbye() + '\n';
     assertEquals(realExpectedOut, testOutput);
   }
 
@@ -133,7 +135,6 @@ public class FunctionalTest {
         HEARTS C4 4
         DIAMONDS C3 3
         Счет Игрока: 7
-        /wait - остановить добор , /take - добрать карту
         Dealer:
         CLUBS C10 10
         SPADES C7 7
@@ -143,7 +144,6 @@ public class FunctionalTest {
         DIAMONDS C3 3
         SPADES QUEEN 10
         Счет Игрока: 17
-        /wait - остановить добор , /take - добрать карту
         Dealer:
         CLUBS C10 10
         SPADES C7 7
@@ -187,7 +187,6 @@ public class FunctionalTest {
         SPADES C8 8
         DIAMONDS C3 3
         Счет Игрока: 11
-        /wait - остановить добор , /take - добрать карту
         Dealer:
         HEARTS KING 10
         SPADES C3 3
@@ -198,7 +197,6 @@ public class FunctionalTest {
         DIAMONDS C3 3
         HEARTS C3 3
         Счет Игрока: 14
-        /wait - остановить добор , /take - добрать карту
         Dealer:
         HEARTS KING 10
         SPADES C3 3
@@ -211,7 +209,6 @@ public class FunctionalTest {
         HEARTS C3 3
         CLUBS C2 2
         Счет Игрока: 16
-        /wait - остановить добор , /take - добрать карту
         Dealer:
         HEARTS KING 10
         SPADES C3 3
@@ -258,7 +255,6 @@ public class FunctionalTest {
         CLUBS C6 6
         CLUBS C5 5
         Счет Игрока: 11
-        /wait - остановить добор , /take - добрать карту
         Некорректный запрос. Попробую снова)
         Dealer:
         DIAMONDS C10 10

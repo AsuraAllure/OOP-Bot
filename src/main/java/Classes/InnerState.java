@@ -1,20 +1,21 @@
 package Classes;
 
-import Enums.State;
 import Enums.Buttons;
+import Enums.State;
 import Games.BlackJack.BlackJack;
 import VK.TestVK;
 import VK.VK;
 import java.util.ArrayList;
 
 public class InnerState {
+
   private final MessageBox mb;
   private final VK vk;
   private final BlackJack bj;
+  private final ArrayList<String> availableCommands;
   private boolean exitState;
   private String userToken;
   private State prevState;
-  private ArrayList<String> availableCommands;
 
   public InnerState() {
     exitState = false;
@@ -38,7 +39,8 @@ public class InnerState {
   public boolean isExit() {
     return exitState;
   }
-  public ArrayList<String> getAvailableCommands(){
+
+  public ArrayList<String> getAvailableCommands() {
     return availableCommands;
   }
 
@@ -153,8 +155,9 @@ public class InnerState {
         }
         String stepMessage = "";
 
-        if (!correctBlackJackInput(input))
+        if (!correctBlackJackInput(input)) {
           return mb.getIncorrectCommand();
+        }
 
         String step = bj.play(input);
 
@@ -171,11 +174,13 @@ public class InnerState {
     }
     return mb.getIncorrectCommand();
   }
-  private boolean correctBlackJackInput(String input){
-    return input.contentEquals("1") || input.contentEquals("11") ||
-        input.contentEquals("/take") || input.contentEquals("/wait")
-        || input.contentEquals("take") || input.contentEquals("wait");
+
+  private boolean correctBlackJackInput(String input) {
+    return input.contentEquals("1") || input.contentEquals("11") || input.contentEquals("/take")
+        || input.contentEquals("/wait") || input.contentEquals("take") || input.contentEquals(
+        "wait");
   }
+
   public String sayGoodbye() {
     return mb.getGoodbye();
   }

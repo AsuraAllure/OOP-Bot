@@ -38,21 +38,32 @@ public class BlackJack {
 
   public String distribution() {
     String mess = "Начинается партия.\nВ каждой строке будет отображаться карта в формате:\nМАСТЬ ЗНАЧЕНИЕ НОМИНАЛ\n\nВ случае выпадение туза, введите его значение: 1 или 11\n\n";
-    play("/take");
-    mess += play("/take");
-    return mess;
+    user.doStep("/take", deck);
+    dealer.doStep(deck);
+    if (user.hasAce()) {
+      roundCheck();
+      return mess + loggingStep();
+    }
+    user.doStep("/take", deck);
+    dealer.doStep(deck);
+    roundCheck();
+    return mess + loggingStep();
+
   }
 
   public String play(String input) {
     user.doStep(input, deck);
+
     if (isCommand(input)) {
       dealer.doStep(deck);
     }
+
     if (user.isWait()) {
       finishDealerStep();
     }
+
     roundCheck();
-    return loggingStep(input);
+    return loggingStep();
   }
 
   private void roundCheck() {
@@ -64,7 +75,7 @@ public class BlackJack {
     gameState = dealer.isWait() && user.isWait();
   }
 
-  private String loggingStep(String input) {
+  private String loggingStep() {
 
     if (user.hasAce()) {
       return "Ваши карты:\n" + user.showHand() + "Вам выпал " + user.getAce().toString()
@@ -76,7 +87,7 @@ public class BlackJack {
             + user.showHand() + "Счет Игрока: " + user.calcScore();
 
     if (!gameState) {
-      return stepMessage + "\n/wait - остановить добор , /take - добрать карту";
+      return stepMessage;
     }
 
     String mes = stepMessage + ". Cчёт ведущего: " + dealer.calcScore();
@@ -108,8 +119,8 @@ public class BlackJack {
   }
 
   private boolean isCommand(String input) {
-    return input.contentEquals("/wait") || input.contentEquals("/take")
-        ||input.contentEquals("wait") || input.contentEquals("take");
+    return input.contentEquals("/wait") || input.contentEquals("/take") || input.contentEquals(
+        "wait") || input.contentEquals("take");
   }
 
   private void finishDealerStep() {
