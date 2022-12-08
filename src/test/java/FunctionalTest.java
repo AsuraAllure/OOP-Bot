@@ -18,7 +18,6 @@ public class FunctionalTest {
       try {
         input = tr.read();
       } catch (IndexOutOfBoundsException e) {
-
         break;
       }
       if (input == "") {
@@ -27,7 +26,6 @@ public class FunctionalTest {
       String output = s.execCommand(input);
       result += output + '\n';
     } while (!s.isExit());
-
     return result;
   }
 
@@ -40,7 +38,6 @@ public class FunctionalTest {
         mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' +
         mb.getVKCommand() + '\n' + mb.countChatsMessage() + "2" + mb.getVKCommand2() + '\n' +
         mb.getGoodbye() + '\n';
-
     assertEquals(realExpectedOutput, testOutput);
   }
 
@@ -109,6 +106,172 @@ public class FunctionalTest {
     String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getStart() + '\n' +
         mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' + mb.getIncorrectToken() +
         '\n' + mb.getGoodbye() + '\n';
+    assertEquals(realExpectedOut, testOutput);
+  }
+
+  @Test
+  public void Test8() {
+    InnerState in = new InnerState(new TestObject(3232));
+    String testOutput = testOutput(in, "src/test/java/Test8");
+    String realExpectedOutput = """
+        Привет!
+        Главное меню: /choose.
+        Документация команд: /help.
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+        Начинается партия.
+        В каждой строке будет отображаться карта в формате:
+        МАСТЬ ЗНАЧЕНИЕ НОМИНАЛ
+
+        В случае выпадение туза, введите его значение: 1 или 11
+
+        Dealer:
+        CLUBS C10 10
+        SPADES C7 7
+        Счет Ведущего: 17
+        User:
+        HEARTS C4 4
+        DIAMONDS C3 3
+        Счет Игрока: 7
+        /wait - остановить добор , /take - добрать карту
+        Dealer:
+        CLUBS C10 10
+        SPADES C7 7
+        Счет Ведущего: 17
+        User:
+        HEARTS C4 4
+        DIAMONDS C3 3
+        SPADES QUEEN 10
+        Счет Игрока: 17
+        /wait - остановить добор , /take - добрать карту
+        Dealer:
+        CLUBS C10 10
+        SPADES C7 7
+        Счет Ведущего: 17
+        User:
+        HEARTS C4 4
+        DIAMONDS C3 3
+        SPADES QUEEN 10
+        Счет Игрока: 17. Cчёт ведущего: 17 Ничья.
+
+        Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+        Завершение работы.
+        """;
+    assertEquals(realExpectedOutput, testOutput);
+  }
+
+  @Test
+  public void Test9() {
+    InnerState in = new InnerState(new TestObject(987654));
+    MessageBox mb = new MessageBox();
+    String testOutput = testOutput(in, "src/test/java/Test9");
+    String realExpectedOutput = """
+        Привет!
+        Главное меню: /choose.
+        Документация команд: /help.
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+        Начинается партия.
+        В каждой строке будет отображаться карта в формате:
+        МАСТЬ ЗНАЧЕНИЕ НОМИНАЛ
+                
+        В случае выпадение туза, введите его значение: 1 или 11
+                
+        Dealer:
+        HEARTS KING 10
+        SPADES C3 3
+        Счет Ведущего: 13
+        User:
+        SPADES C8 8
+        DIAMONDS C3 3
+        Счет Игрока: 11
+        /wait - остановить добор , /take - добрать карту
+        Dealer:
+        HEARTS KING 10
+        SPADES C3 3
+        HEARTS C2 2
+        Счет Ведущего: 15
+        User:
+        SPADES C8 8
+        DIAMONDS C3 3
+        HEARTS C3 3
+        Счет Игрока: 14
+        /wait - остановить добор , /take - добрать карту
+        Dealer:
+        HEARTS KING 10
+        SPADES C3 3
+        HEARTS C2 2
+        DIAMONDS C5 5
+        Счет Ведущего: 20
+        User:
+        SPADES C8 8
+        DIAMONDS C3 3
+        HEARTS C3 3
+        CLUBS C2 2
+        Счет Игрока: 16
+        /wait - остановить добор , /take - добрать карту
+        Dealer:
+        HEARTS KING 10
+        SPADES C3 3
+        HEARTS C2 2
+        DIAMONDS C5 5
+        Счет Ведущего: 20
+        User:
+        SPADES C8 8
+        DIAMONDS C3 3
+        HEARTS C3 3
+        CLUBS C2 2
+        CLUBS C10 10
+        Счет Игрока: 26. Cчёт ведущего: 20 Вы проиграли.
+                
+        Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+        Завершение работы.
+        """;
+    assertEquals(realExpectedOutput, testOutput);
+  }
+
+  @Test
+  public void Test10() {
+    InnerState in = new InnerState(new TestObject(56453));
+    String testOutput = testOutput(in, "src/test/java/Test10");
+    String realExpectedOut = """
+        Привет!
+        Главное меню: /choose.
+        Документация команд: /help.
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+        Начинается партия.
+        В каждой строке будет отображаться карта в формате:
+        МАСТЬ ЗНАЧЕНИЕ НОМИНАЛ
+
+        В случае выпадение туза, введите его значение: 1 или 11
+
+        Dealer:
+        DIAMONDS C10 10
+        SPADES KING 10
+        Счет Ведущего: 20
+        User:
+        CLUBS C6 6
+        CLUBS C5 5
+        Счет Игрока: 11
+        /wait - остановить добор , /take - добрать карту
+        Некорректный запрос. Попробую снова)
+        Dealer:
+        DIAMONDS C10 10
+        SPADES KING 10
+        Счет Ведущего: 20
+        User:
+        CLUBS C6 6
+        CLUBS C5 5
+        Счет Игрока: 11. Cчёт ведущего: 20 Вы проиграли.
+
+        Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню
+        Завершение работы.
+        """;
     assertEquals(realExpectedOut, testOutput);
   }
 }

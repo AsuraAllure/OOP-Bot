@@ -32,6 +32,7 @@ public class InnerState {
     this.vk = new TestVK();
     this.bj = new BlackJack();
     this.bj.setSeed(a.getSeed());
+    this.availableCommands = new ArrayList<>();
   }
 
   public boolean isExit() {
