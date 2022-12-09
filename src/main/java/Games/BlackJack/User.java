@@ -21,7 +21,6 @@ public class User extends Player {
     if (st == PlayerState.WAIT) {
       return;
     }
-
     if (choice.contentEquals("/wait") || choice.contentEquals("wait")) {
       st = PlayerState.WAIT;
       return;
