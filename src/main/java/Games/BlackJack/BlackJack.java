@@ -1,12 +1,13 @@
 package Games.BlackJack;
 
 import CardGame.GameException;
+
 import Enums.Games.BlackJack.GameStateBlackJack;
 
 public class BlackJack {
 
-  private final Dealer dealer;
-  private final User user;
+  private final DealerBlackjack dealerBlackjack;
+  private final UserBlackjack userBlackjack;
   private BlackJackDeck deck;
   private Boolean gameState;
 
@@ -16,15 +17,15 @@ public class BlackJack {
     } catch (GameException e) {
       e.printStackTrace();
     }
-    dealer = new Dealer();
-    user = new User();
+    dealerBlackjack = new DealerBlackjack();
+    userBlackjack = new UserBlackjack();
     gameState = false;
   }
 
   public void startPlay() {
     gameState = true;
-    dealer.refresh();
-    user.refresh();
+    dealerBlackjack.refresh();
+    userBlackjack.refresh();
     deck.refresh();
   }
 
@@ -38,27 +39,27 @@ public class BlackJack {
 
   public String distribution() {
     String mess = "Начинается партия.\nВ каждой строке будет отображаться карта в формате:\nМАСТЬ ЗНАЧЕНИЕ НОМИНАЛ\n\nВ случае выпадение туза, введите его значение: 1 или 11\n\n";
-    user.doStep("/take", deck);
-    dealer.doStep(deck);
-    if (user.hasAce()) {
+    userBlackjack.doStep("/take", deck);
+    dealerBlackjack.doStep(deck);
+    if (userBlackjack.hasAce()) {
       roundCheck();
       return mess + loggingStep();
     }
-    user.doStep("/take", deck);
-    dealer.doStep(deck);
+    userBlackjack.doStep("/take", deck);
+    dealerBlackjack.doStep(deck);
     roundCheck();
     return mess + loggingStep();
 
   }
 
   public String play(String input) {
-    user.doStep(input, deck);
+    userBlackjack.doStep(input, deck);
 
     if (isCommand(input)) {
-      dealer.doStep(deck);
+      dealerBlackjack.doStep(deck);
     }
 
-    if (user.isWait()) {
+    if (userBlackjack.isWait()) {
       finishDealerStep();
     }
 
@@ -67,34 +68,35 @@ public class BlackJack {
   }
 
   private void roundCheck() {
-    if (dealer.isWait() && dealer.gSt == GameStateBlackJack.OVERFLOW
-        && user.gSt != GameStateBlackJack.OVERFLOW) {
-      user.endStep();
+    if (dealerBlackjack.isWait() && dealerBlackjack.gSt == GameStateBlackJack.OVERFLOW
+        && userBlackjack.gSt != GameStateBlackJack.OVERFLOW) {
+      userBlackjack.endStep();
     }
 
-    gameState = dealer.isWait() && user.isWait();
+    gameState = dealerBlackjack.isWait() && userBlackjack.isWait();
   }
 
   private String loggingStep() {
 
-    if (user.hasAce()) {
-      return "Ваши карты:\n" + user.showHand() + "Вам выпал " + user.getAce().toString()
-          + ". Определите его значение 1/11";
+    if (userBlackjack.hasAce()) {
+      return "Ваши карты:\n" + userBlackjack.showHand() + "Вам выпал " + userBlackjack.getAce()
+          .toString() + ". Определите его значение 1/11";
     }
 
     String stepMessage =
-        "Dealer:\n" + dealer.showHand() + "Счет Ведущего: " + dealer.calcScore() + "\nUser:\n"
-            + user.showHand() + "Счет Игрока: " + user.calcScore();
+        "Dealer:\n" + dealerBlackjack.showHand() + "Счет Ведущего: " + dealerBlackjack.getCurScore()
+            + "\nUser:\n" + userBlackjack.showHand() + "Счет Игрока: "
+            + userBlackjack.getCurScore();
 
     if (!gameState) {
       return stepMessage;
     }
 
-    String mes = stepMessage + ". Cчёт ведущего: " + dealer.calcScore();
+    String mes = stepMessage + ". Cчёт ведущего: " + dealerBlackjack.getCurScore();
 
-    switch (compare(user, dealer)) {
+    switch (compare(userBlackjack, dealerBlackjack)) {
       case 1:
-        if (user.calcScore() != 21) {
+        if (userBlackjack.getCurScore() != 21) {
           return mes + " Вы выйграли.";
         }
         return mes + " Вы выйграли, у вас Блэкджек. Поздравляем.";
@@ -106,13 +108,13 @@ public class BlackJack {
     return "error";
   }
 
-  private int compare(Player us, Player deal) {
+  private int compare(PlayerBlackJack us, PlayerBlackJack deal) {
     if (us.getGST() != GameStateBlackJack.OVERFLOW) {
-      if (us.calcScore() > deal.calcScore() || deal.getGST() == GameStateBlackJack.OVERFLOW) {
+      if (us.getCurScore() > deal.getCurScore() || deal.getGST() == GameStateBlackJack.OVERFLOW) {
         return 1;
       }
     }
-    if (deal.calcScore() == us.calcScore()) {
+    if (deal.getCurScore() == us.getCurScore()) {
       return 3;
     }
     return 2;
@@ -124,14 +126,14 @@ public class BlackJack {
   }
 
   private void finishDealerStep() {
-    while (!dealer.isWait()) {
-      dealer.doStep(deck);
+    while (!dealerBlackjack.isWait()) {
+      dealerBlackjack.doStep(deck);
     }
   }
 
   public void refresh() {
-    user.refresh();
-    dealer.refresh();
+    userBlackjack.refresh();
+    dealerBlackjack.refresh();
     deck.refresh();
     gameState = false;
   }

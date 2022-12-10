@@ -11,7 +11,10 @@ public class Card {
     this.suit = suit;
     this.value = val;
   }
-
+  public Card(){
+    this.suit = null;
+    this.value = null;
+  }
   public Card(Card c) {
     suit = c.suit;
     value = c.value;

@@ -3,7 +3,7 @@ package Games.BlackJack;
 import CardGame.GameException;
 import Enums.Games.BlackJack.PlayerState;
 
-public class Dealer extends Player {
+public class DealerBlackjack extends PlayerBlackJack {
 
   public void doStep(BlackJackDeck deck) {
 
@@ -11,7 +11,7 @@ public class Dealer extends Player {
       return;
     }
 
-    if (calcScore() >= 17) {
+    if (getCurScore() >= 17) {
       endStep();
       return;
     }
@@ -19,7 +19,7 @@ public class Dealer extends Player {
     try {
       takeCard(new BlackJackCard(deck.getCard()));
     } catch (AceException ace) {
-      if (calcScore() <= 10) {
+      if (getCurScore() <= 10) {
         ace.curCard.setScore(11);
       }
       ace.curCard.setScore(1);

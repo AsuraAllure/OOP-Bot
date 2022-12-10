@@ -2,18 +2,16 @@ package Games.BlackJack;
 
 import Enums.Games.BlackJack.GameStateBlackJack;
 import Enums.Games.BlackJack.PlayerState;
-import java.util.LinkedList;
-import java.util.List;
+import CardGame.Player;
 
-public class Player {
+public class PlayerBlackJack extends Player {
 
-  protected List<BlackJackCard> hand;
   protected PlayerState st;
   protected GameStateBlackJack gSt;
   protected int curScore;
 
-  public Player() {
-    hand = new LinkedList<BlackJackCard>();
+  public PlayerBlackJack() {
+    super();
     gSt = GameStateBlackJack.NULL;
     st = PlayerState.NULL;
     curScore = 0;
@@ -23,15 +21,7 @@ public class Player {
     return gSt;
   }
 
-  public String showHand() {
-    String res = "";
-    for (BlackJackCard c : hand) {
-      res += c.toString() + '\n';
-    }
-    return res;
-  }
-
-  public int calcScore() {
+  public int getCurScore() {
     return curScore;
   }
 
@@ -40,7 +30,7 @@ public class Player {
   }
 
   public void refresh() {
-    hand.clear();
+    super.refresh();
     st = PlayerState.TAKE_CARD;
     gSt = GameStateBlackJack.ACTIVE;
     curScore = 0;
@@ -50,9 +40,12 @@ public class Player {
     st = PlayerState.WAIT;
   }
 
+
+
   public void takeCard(BlackJackCard card) throws AceException {
+    super.takeCard(card);
+
     int a = card.getScore();
-    hand.add(card);
     curScore += a;
     if (curScore >= 21) {
       st = PlayerState.WAIT;

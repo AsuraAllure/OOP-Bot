@@ -3,13 +3,12 @@ package Games.BlackJack;
 import CardGame.GameException;
 import Enums.Games.BlackJack.PlayerState;
 
-
-public class User extends Player {
+public class UserBlackjack extends PlayerBlackJack {
 
   private boolean hasAceVal;
   private BlackJackCard prevCard;
 
-  public User() {
+  public UserBlackjack() {
     hasAceVal = false;
   }
 
