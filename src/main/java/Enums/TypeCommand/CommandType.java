@@ -1,4 +1,4 @@
-package Enums;
+package Enums.TypeCommand;
 
 public enum CommandType {
   HELP, CHOOSE, VK, EXIT, START, VK_CHOOSE_OPERATION, RETURN, BLACKJACK, NOT_CORRECT

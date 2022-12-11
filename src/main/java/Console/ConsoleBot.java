@@ -1,16 +1,16 @@
 package Console;
 
 import Classes.InnerState;
+import Classes.TestObject;
 import Interfaces.Factory;
 import Interfaces.Reader;
 import Interfaces.Writer;
-import Classes.TestObject;
 
 public class ConsoleBot {
 
-  private Reader rd;
-  private Writer wr;
   private final InnerState is;
+  private final Reader rd;
+  private final Writer wr;
 
   public ConsoleBot(Factory fc) {
     this.rd = fc.getReader();
