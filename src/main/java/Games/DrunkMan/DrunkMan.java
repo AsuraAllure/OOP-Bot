@@ -26,6 +26,7 @@ public class DrunkMan {
     isInit = false;
     userWin = false;
     table = new LinkedList<DrunkManCard>();
+
   }
   public void startPlay() {
     gameState = true;
@@ -52,12 +53,13 @@ public class DrunkMan {
     isInit = false;
   }
   public String play(){
+
     if (!isInit) {
+      startPlay();
       init(user, dealer);
       isInit = true;
     }
     table.clear();
-
       while (true) {
         DrunkManCard d1 = user.drowCard();
         DrunkManCard d2 = dealer.drowCard();
@@ -74,11 +76,11 @@ public class DrunkMan {
         }
       }
 
-      for(int i=table.size()-1; i >=0 ;i--)
+      for(DrunkManCard c : table)
         if (userWin)
-          user.takeCard(table.get(i));
+          user.takeCard(c);
         else
-          dealer.takeCard(table.get(i));
+          dealer.takeCard(c);
 
     roundCheck();
     return loggingStep();

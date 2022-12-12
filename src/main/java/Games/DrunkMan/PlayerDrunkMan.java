@@ -28,7 +28,8 @@ public class PlayerDrunkMan extends Player {
     return new DrunkManCard(super.drowCard(hand.size()-1));
   }
   public void takeCard(Card c){
-   hand.add(0,c);
+    Card car = c;
+   hand.add(0,car);
    curCountCard +=1;
   }
 }
