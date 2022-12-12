@@ -5,6 +5,7 @@ import Classes.Strategies.BJStrategy;
 import Classes.Strategies.ChooseStrategy;
 import Classes.Strategies.StartStrategy;
 import Classes.Strategies.VKStrategy;
+import Classes.Strategies.DrunkManStrategy;
 import Enums.State;
 import Interfaces.Strategy;
 import java.util.ArrayList;
@@ -54,7 +55,17 @@ public class InnerState {
           }
           mes += strategy.exec(context);
         }
+        if (context.getPrevState() == State.PLAY_DRUNKMAN){
+          if (to == null){
+            strategy = new DrunkManStrategy();
+          }else {
+            strategy = new DrunkManStrategy(to);
+          }
+          mes += strategy.exec(context);
+        }
         return mes;
+
+
       case WAIT_VK_TOKEN:
       case WAIT_VK_COMMAND:
         if (to == null) {
@@ -64,9 +75,12 @@ public class InnerState {
         }
         context.setInput(input);
         return strategy.exec(context);
+
       case PLAY_BLACKJACK:
+      case PLAY_DRUNKMAN:
         context.setInput(input);
         return strategy.exec(context);
+
     }
     MessageBox mb = new MessageBox();
     return mb.getIncorrectCommand();

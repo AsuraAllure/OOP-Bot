@@ -11,6 +11,7 @@ public class ChooseCommand extends Command {
       case "/exit", "exit" -> commandType = CommandType.EXIT;
       case "/blackjack", "blackjack" -> commandType = CommandType.BLACKJACK;
       case "/choose", "choose" -> commandType = CommandType.CHOOSE;
+      case "/drunkman", "drunkman" -> commandType = CommandType.DRUNKMAN;
       default -> commandType = CommandType.NOT_CORRECT;
     }
   }

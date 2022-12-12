@@ -33,7 +33,7 @@ public class FunctionalTest {
   public void Test1() {
     InnerState in = new InnerState(new TestObject(12634));  // Сид помещать в TEST_OBJECT
     MessageBox mb = new MessageBox();
-    String testOutput = testOutput(in, "src/test/java/Test1");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test1");
     String realExpectedOutput =
         mb.getStart() + '\n' + mb.getHelp() + '\n' + mb.getChoiceOfMessenger() + '\n'
             + mb.getVkToken() + '\n' + mb.getVKCommand() + '\n' + mb.countChatsMessage() + "2"
@@ -44,7 +44,7 @@ public class FunctionalTest {
   @Test
   public void Test2() {
     InnerState in = new InnerState(new TestObject());
-    String testOutput = testOutput(in, "src/test/java/Test2");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test2");
     MessageBox mb = new MessageBox();
     String realExpectedOutput =
         mb.getIncorrectCommand() + '\n' + mb.getHelp() + '\n' + mb.getChoiceOfMessenger() + '\n'
@@ -57,7 +57,7 @@ public class FunctionalTest {
   @Test
   public void Test3() {
     InnerState in = new InnerState(new TestObject());
-    String testOutput = testOutput(in, "src/test/java/Test3");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test3");
     MessageBox mb = new MessageBox();
     String realExpectedOutput =
         mb.getHelp() + '\n' + mb.getIncorrectCommand() + '\n' + mb.getChoiceOfMessenger() + '\n'
@@ -70,7 +70,7 @@ public class FunctionalTest {
   @Test
   public void Test4() {
     InnerState in = new InnerState(new TestObject());
-    String testOutput = testOutput(in, "src/test/java/Test4");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test4");
     MessageBox mb = new MessageBox();
     String realExpectedOut = mb.getIncorrectCommand() + '\n' + mb.getGoodbye() + '\n';
 
@@ -81,7 +81,7 @@ public class FunctionalTest {
   @Test
   public void Test5() {
     InnerState in = new InnerState(new TestObject());
-    String testOutput = testOutput(in, "src/test/java/Test5");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test5");
     MessageBox mb = new MessageBox();
     String realExpectedOut = mb.getChoiceOfMessenger() + '\n' + mb.getGoodbye() + '\n';
     assertEquals(realExpectedOut, testOutput);
@@ -90,7 +90,7 @@ public class FunctionalTest {
   @Test
   public void Test6() {
     InnerState in = new InnerState(new TestObject());
-    String testOutput = testOutput(in, "src/test/java/Test6");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test6");
     MessageBox mb = new MessageBox();
     String realExpectedOut =
         mb.getChoiceOfMessenger() + '\n' + mb.getVkToken() + '\n' + mb.getVKCommand() + '\n'
@@ -103,7 +103,7 @@ public class FunctionalTest {
   @Test
   public void Test7() {
     InnerState in = new InnerState(new TestObject());
-    String testOutput = testOutput(in, "src/test/java/Test7");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test7");
     MessageBox mb = new MessageBox();
     String realExpectedOut =
         mb.getIncorrectCommand() + '\n' + mb.getStart() + '\n' + mb.getChoiceOfMessenger() + '\n'
@@ -114,13 +114,14 @@ public class FunctionalTest {
   @Test
   public void Test8() {
     InnerState in = new InnerState(new TestObject(3232));
-    String testOutput = testOutput(in, "src/test/java/Test8");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test8");
     String realExpectedOutput = """
         Привет!
         Главное меню: /choose.
         Документация команд: /help.
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
         Начинается партия.
         В каждой строке будет отображаться карта в формате:
         МАСТЬ ЗНАЧЕНИЕ НОМИНАЛ
@@ -157,6 +158,7 @@ public class FunctionalTest {
         Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
         Завершение работы.
         """;
     assertEquals(realExpectedOutput, testOutput);
@@ -166,13 +168,14 @@ public class FunctionalTest {
   public void Test9() {
     InnerState in = new InnerState(new TestObject(987654));
     MessageBox mb = new MessageBox();
-    String testOutput = testOutput(in, "src/test/java/Test9");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test9");
     String realExpectedOutput = """
         Привет!
         Главное меню: /choose.
         Документация команд: /help.
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
         Начинается партия.
         В каждой строке будет отображаться карта в формате:
         МАСТЬ ЗНАЧЕНИЕ НОМИНАЛ
@@ -226,6 +229,7 @@ public class FunctionalTest {
         Вы завершили партию. Нажмите /blackjack для продолжения, или /choose для выхода в главное меню
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
         Завершение работы.
         """;
     assertEquals(realExpectedOutput, testOutput);
@@ -234,13 +238,14 @@ public class FunctionalTest {
   @Test
   public void Test10() {
     InnerState in = new InnerState(new TestObject(56453));
-    String testOutput = testOutput(in, "src/test/java/Test10");
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test10");
     String realExpectedOut = """
         Привет!
         Главное меню: /choose.
         Документация команд: /help.
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
         Начинается партия.
         В каждой строке будет отображаться карта в формате:
         МАСТЬ ЗНАЧЕНИЕ НОМИНАЛ

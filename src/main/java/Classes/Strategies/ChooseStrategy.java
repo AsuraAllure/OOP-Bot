@@ -22,6 +22,7 @@ public class ChooseStrategy implements Strategy {
       case RETURN:
         context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
         context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
         return mb.getMainMenuMessage();
       case VK:
         context.setPrevState(State.WAIT_VK_TOKEN);
@@ -35,6 +36,9 @@ public class ChooseStrategy implements Strategy {
         context.addAvailableCommand(String.valueOf(Buttons.WAIT).toLowerCase());
         context.addAvailableCommand(String.valueOf(Buttons.TAKE).toLowerCase());
         context.setPrevState(State.PLAY_BLACKJACK);
+        return "";
+      case DRUNKMAN:
+        context.setPrevState(State.PLAY_DRUNKMAN);
         return "";
       case CHOOSE:
         context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());

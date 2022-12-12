@@ -20,38 +20,16 @@ public class BlackJackCard extends Card {
 
   private void convertValueToScore() {
     switch (value) {
-      case C2:
-        score = 2;
-        break;
-      case C3:
-        score = 3;
-        break;
-      case C4:
-        score = 4;
-        break;
-      case C5:
-        score = 5;
-        break;
-      case C6:
-        score = 6;
-        break;
-      case C7:
-        score = 7;
-        break;
-      case C8:
-        score = 8;
-        break;
-      case C9:
-        score = 9;
-        break;
-      case C10:
-      case VALET:
-      case QUEEN:
-      case KING:
-        score = 10;
-        break;
-      case ACE:
-        score = -1;
+      case C2 -> score = 2;
+      case C3 -> score = 3;
+      case C4 -> score = 4;
+      case C5 -> score = 5;
+      case C6 -> score = 6;
+      case C7 -> score = 7;
+      case C8 -> score = 8;
+      case C9 -> score = 9;
+      case C10, VALET, QUEEN, KING -> score = 10;
+      case ACE -> score = -1;
     }
   }
 

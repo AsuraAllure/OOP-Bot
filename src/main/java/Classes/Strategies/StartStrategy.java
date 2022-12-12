@@ -31,6 +31,7 @@ public class StartStrategy implements Strategy {
         context.setPrevState(State.CHOOSE);
         context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
         context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
         return mb.getChoiceOfMessenger();
       case EXIT:
         context.setExitState(true);

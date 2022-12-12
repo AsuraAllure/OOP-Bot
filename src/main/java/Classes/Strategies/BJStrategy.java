@@ -1,6 +1,6 @@
 package Classes.Strategies;
 
-import Classes.Commands.BJCommand;
+import Classes.Commands.StandartCommand;
 import Classes.Contexts.Context;
 import Classes.MessageBox;
 import Classes.TestObject;
@@ -29,7 +29,7 @@ public class BJStrategy implements Strategy {
   }
 
   public String exec(Context context) {
-    BJCommand com = new BJCommand(context.getInput());
+    StandartCommand com = new StandartCommand(context.getInput());
     switch (com.getComType()) {
       case EXIT:
         context.setExitState(true);
@@ -38,6 +38,7 @@ public class BJStrategy implements Strategy {
         context.setPrevState(State.CHOOSE);
         context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
         context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
         return mb.getMainMenuMessage();
     }
     if (!distr) {

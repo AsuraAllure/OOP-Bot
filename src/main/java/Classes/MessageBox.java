@@ -8,6 +8,7 @@ public class MessageBox {
         Доступные опции:
             Количество сообщений в ВК /vk
             Игра в блэкджек /blackjack
+            Игра в пьяницу /drunkman
         """;
   }
 
@@ -24,6 +25,7 @@ public class MessageBox {
                        Возвращает количество чатов с непрочитанными сообщениями
             --> /blackjack
              Начинает игру в blackjack.
+            --> /drunkman
         --> /return
          Возвращает в главное меню.
         """;
@@ -46,7 +48,9 @@ public class MessageBox {
 
   public String getChoiceOfMessenger() {
 
-    return "Жми /vk, если хочешь подключиться к Вконтакте\n   /blackjack, если хочешь начать игру в blackjack";
+    return "Жми /vk, если хочешь подключиться к Вконтакте\n"
+        + "   /blackjack, если хочешь начать игру в blackjack\n"
+        + "   /drunkman, если хочешь начать игру в пьяницу";
   }
 
   public String getVkToken() {

@@ -35,6 +35,7 @@ public class VKStrategy implements Strategy {
         context.setPrevState(State.CHOOSE);
         context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
         context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
         return mb.getMainMenuMessage();
       case VK_CHOOSE_OPERATION:
         context.setPrevState(State.EMPTY);
