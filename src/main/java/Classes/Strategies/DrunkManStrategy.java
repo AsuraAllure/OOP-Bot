@@ -45,6 +45,7 @@ public class DrunkManStrategy implements Strategy {
     context.addAvailableCommand(String.valueOf(Buttons.PLAY).toLowerCase());
     context.addAvailableCommand(String.valueOf(Buttons.RETURN).toLowerCase());
 
+    dm.startPlay();
     String mes = dm.play();
 
     if (dm.getState()){
