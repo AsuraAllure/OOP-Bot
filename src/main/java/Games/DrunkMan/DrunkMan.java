@@ -89,7 +89,7 @@ public class DrunkMan {
     for (int i=0; i < table.size(); i++)
       mes += table.get(i).toString()+'\n';
 
-    if (!gameState){
+    if (gameState){
       if (userWin)
         mes += "Вы выйграли раунд";
       else
