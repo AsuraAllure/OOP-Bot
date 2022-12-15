@@ -2,12 +2,10 @@ package Classes.Strategies;
 
 import Classes.Commands.StandartCommand;
 import Classes.Contexts.Changers.ChooseContext;
-import Classes.Contexts.Context;
 import Classes.Contexts.Changers.ExitContext;
+import Classes.Contexts.Context;
 import Classes.MessageBox;
 import Classes.TestObject;
-import Enums.Buttons;
-import Enums.State;
 import Games.BlackJack.BlackJack;
 import Interfaces.Strategy;
 
@@ -27,6 +25,14 @@ public class BJStrategy implements Strategy {
     bj = new BlackJack();
     dist = false;
     bj.setSeed(a.getSeed());
+  }
+
+  public Boolean getDist(){
+    return dist;
+  }
+
+  public void setDist(Boolean bool){
+    dist = bool;
   }
 
   public String exec(Context context) {

@@ -1,16 +1,22 @@
 //import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import CardGame.GameException;
 import Classes.Contexts.Context;
+import Classes.Strategies.BJStrategy;
 import Classes.Strategies.ChooseStrategy;
+import Classes.Strategies.DrunkManStrategy;
 import Classes.Strategies.StartStrategy;
 import Classes.Strategies.VKStrategy;
 import Classes.TestObject;
+import Enums.State;
 import Games.BlackJack.BlackJackDeck;
 import Games.BlackJack.DealerBlackjack;
 import Games.BlackJack.UserBlackjack;
+import java.util.ArrayList;
 import org.junit.Test;
 
 public class UnitTest {
@@ -32,13 +38,13 @@ public class UnitTest {
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 14);
-    assertEquals(dealer.getCurScore(), 16);
+    assertEquals(14, user.getCurScore());
+    assertEquals(16, dealer.getCurScore());
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 23);
-    assertEquals(dealer.getCurScore(), 23);
+    assertEquals(23, user.getCurScore());
+    assertEquals(23, dealer.getCurScore());
 
     String expectedUserHand = """
         DIAMONDS QUEEN 10
@@ -71,28 +77,28 @@ public class UnitTest {
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 5);
-    assertEquals(dealer.getCurScore(), 11);
+    assertEquals(5, user.getCurScore());
+    assertEquals(11, dealer.getCurScore());
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 9);
-    assertEquals(dealer.getCurScore(), 21);
+    assertEquals(9, user.getCurScore());
+    assertEquals(21, dealer.getCurScore());
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 16);
-    assertEquals(dealer.getCurScore(), 21);
+    assertEquals(16, user.getCurScore());
+    assertEquals(21, dealer.getCurScore());
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 18);
-    assertEquals(dealer.getCurScore(), 21);
+    assertEquals(18, user.getCurScore());
+    assertEquals(21, dealer.getCurScore());
 
     user.doStep("/wait", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 18);
-    assertEquals(dealer.getCurScore(), 21);
+    assertEquals(18, user.getCurScore());
+    assertEquals(21, dealer.getCurScore());
 
     String expectedUserHand = """
         CLUBS C3 3
@@ -127,18 +133,18 @@ public class UnitTest {
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 12);
-    assertEquals(dealer.getCurScore(), 19);
+    assertEquals(12, user.getCurScore());
+    assertEquals(19, dealer.getCurScore());
 
     user.doStep("/take", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 14);
-    assertEquals(dealer.getCurScore(), 19);
+    assertEquals(14, user.getCurScore());
+    assertEquals(19, dealer.getCurScore());
 
     user.doStep("/wait", deck);
     dealer.doStep(deck);
-    assertEquals(user.getCurScore(), 14);
-    assertEquals(dealer.getCurScore(), 19);
+    assertEquals(14, user.getCurScore());
+    assertEquals(19, dealer.getCurScore());
 
     String expectedUserHand = """
         HEARTS C2 2
@@ -159,39 +165,77 @@ public class UnitTest {
     Context context = new Context();
 
     context.setInput("return");
-    String expectedResult1 = """
+    String expectedOutput1 = """
         Главное меню.
         Доступные опции:
             Количество сообщений в ВК /vk
             Игра в блэкджек /blackjack
             Игра в пьяницу /drunkman
             """;
-    assertEquals(expectedResult1, strategy.exec(context));
+    assertEquals(expectedOutput1, strategy.exec(context));
+    ArrayList<String> availableCommands1 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail1 = new ArrayList<>();
+    expectedAvail1.add("vk");
+    expectedAvail1.add("blackjack");
+    expectedAvail1.add("drunkman");
+    assertArrayEquals(new ArrayList[]{expectedAvail1}, new ArrayList[]{availableCommands1});
+    assertEquals(State.CHOOSE, context.getPrevState());
+
 
     context.setInput("vk");
-    String expectedResult2 = "Перейди по ссылке"
+    String expectedOutput2 = "Перейди по ссылке"
         + " https://oauth.vk.com/authorize?client_id=51489646&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=notifications&response_type=token&v=5.74, "
         + " введите токен, который находится в url-адрессе";
-    assertEquals(expectedResult2, strategy.exec(context));
+    assertEquals(expectedOutput2, strategy.exec(context));
+    ArrayList<String> availableCommands2 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail2 = new ArrayList<>();
+    expectedAvail2.add("return");
+    expectedAvail2.add("exit");
+    assertArrayEquals(new ArrayList[]{expectedAvail2}, new ArrayList[]{availableCommands2});
+
 
     context.setInput("exit");
-    String expectedResult3 = "Завершение работы.";
-    assertEquals(expectedResult3, strategy.exec(context));
+    String expectedOutput3 = "Завершение работы.";
+    assertEquals(expectedOutput3, strategy.exec(context));
+    ArrayList<String> availableCommands3 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail3 = new ArrayList<>();
+    expectedAvail3.add("return");
+    expectedAvail3.add("exit");
+    assertArrayEquals(new ArrayList[]{expectedAvail3}, new ArrayList[]{availableCommands3});
 
     context.setInput("blackjack");
-    String expectedResult4 = "";
-    assertEquals(expectedResult4, strategy.exec(context));
+    String expectedOutput4 = "";
+    assertEquals(expectedOutput4, strategy.exec(context));
+    ArrayList<String> availableCommands4 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail4 = new ArrayList<>();
+    expectedAvail4.add("wait");
+    expectedAvail4.add("take");
+    assertArrayEquals(new ArrayList[]{expectedAvail4}, new ArrayList[]{availableCommands4});
+    assertEquals(State.PLAY_BLACKJACK, context.getPrevState());
 
     context.setInput("drunkman");
-    String expectedResult5 = "";
-    assertEquals(expectedResult5, strategy.exec(context));
+    String expectedOutput5 = "";
+    assertEquals(expectedOutput5, strategy.exec(context));
+    ArrayList<String> availableCommands5 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail5 = new ArrayList<>();
+    expectedAvail5.add("wait");
+    expectedAvail5.add("take");
+    assertArrayEquals(new ArrayList[]{expectedAvail5}, new ArrayList[]{availableCommands5});
+    assertEquals(State.PLAY_DRUNKMAN, context.getPrevState());
 
     context.setInput("choose");
-    String expectedResult6 = """
+    String expectedOutput6 = """
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
            /drunkman, если хочешь начать игру в пьяницу""";
-    assertEquals(expectedResult6, strategy.exec(context));
+    assertEquals(expectedOutput6, strategy.exec(context));
+    ArrayList<String> availableCommands6 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail6 = new ArrayList<>();
+    expectedAvail6.add("vk");
+    expectedAvail6.add("blackjack");
+    expectedAvail6.add("drunkman");
+    assertArrayEquals(new ArrayList[]{expectedAvail6}, new ArrayList[]{availableCommands6});
+    assertEquals(State.CHOOSE, context.getPrevState());
   }
 
   @Test
@@ -200,14 +244,20 @@ public class UnitTest {
     Context context = new Context();
 
     context.setInput("start");
-    String expectedResult1 = """
+    String expectedOutput1 = """
         Привет!
         Главное меню: /choose.
         Документация команд: /help.""";
-    assertEquals(expectedResult1, strategy.exec(context));
+    assertEquals(expectedOutput1, strategy.exec(context));
+    ArrayList<String> availableCommands1 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail1 = new ArrayList<>();
+    expectedAvail1.add("choose");
+    expectedAvail1.add("help");
+    assertArrayEquals(new ArrayList[]{expectedAvail1}, new ArrayList[]{availableCommands1});
+    assertEquals(State.EMPTY, context.getPrevState());
 
     context.setInput("help");
-    String expectedResult2 = """
+    String expectedOutput2 = """
         --> /exit
          Логический выход из бота.
         --> /choose
@@ -223,22 +273,44 @@ public class UnitTest {
         --> /return
          Возвращает в главное меню.
         """;
-    assertEquals(expectedResult2, strategy.exec(context));
+    assertEquals(expectedOutput2, strategy.exec(context));
+    ArrayList<String> availableCommands2 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail2 = new ArrayList<>();
+    expectedAvail2.add("exit");
+    expectedAvail2.add("choose");
+    expectedAvail2.add("return");
+    assertArrayEquals(new ArrayList[]{expectedAvail2}, new ArrayList[]{availableCommands2});
+    assertEquals(State.EMPTY, context.getPrevState());
 
     context.setInput("choose");
-    String expectedResult3 = """
+    String expectedOutput3 = """
         Жми /vk, если хочешь подключиться к Вконтакте
            /blackjack, если хочешь начать игру в blackjack
            /drunkman, если хочешь начать игру в пьяницу""";
-    assertEquals(expectedResult3, strategy.exec(context));
+    assertEquals(expectedOutput3, strategy.exec(context));
+    ArrayList<String> availableCommands3 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail3 = new ArrayList<>();
+    expectedAvail3.add("vk");
+    expectedAvail3.add("blackjack");
+    expectedAvail3.add("drunkman");
+    assertArrayEquals(new ArrayList[]{expectedAvail3}, new ArrayList[]{availableCommands3});
+    assertEquals(State.CHOOSE, context.getPrevState());
 
     context.setInput("exit");
-    String expectedResult4 = "Завершение работы.";
-    assertEquals(expectedResult4, strategy.exec(context));
+    String expectedOutput4 = "Завершение работы.";
+    assertEquals(expectedOutput4, strategy.exec(context));
+    ArrayList<String> availableCommands4 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail4 = new ArrayList<>();
+    assertArrayEquals(new ArrayList[]{expectedAvail4}, new ArrayList[]{availableCommands4});
+    assertEquals(State.EMPTY, context.getPrevState());
 
-    context.setInput("not_correct");
-    String expectedResult5 = "Некорректный запрос. Попробую снова)";
-    assertEquals(expectedResult5, strategy.exec(context));
+    context.setInput("notCorrect");
+    String expectedOutput5 = "Некорректный запрос. Попробую снова)";
+    assertEquals(expectedOutput5, strategy.exec(context));
+    ArrayList<String> availableCommands5 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail5 = new ArrayList<>();
+    expectedAvail5.add("start");
+    assertArrayEquals(new ArrayList[]{expectedAvail5}, new ArrayList[]{availableCommands5});
   }
 
   @Test
@@ -247,26 +319,134 @@ public class UnitTest {
     Context context = new Context();
 
     context.setInput("exit");
-    String expectedResult1 = "Завершение работы.";
-    assertEquals(expectedResult1, strategy.exec(context));
+    String expectedOutput1 = "Завершение работы.";
+    assertEquals(expectedOutput1, strategy.exec(context));
+    ArrayList<String> availableCommands1 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail1 = new ArrayList<>();
+    assertArrayEquals(new ArrayList[]{expectedAvail1}, new ArrayList[]{availableCommands1});
+    assertEquals(State.EMPTY, context.getPrevState());
 
     context.setInput("return");
-    String expectedResult2 = """
+    String expectedOutput2 = """
         Главное меню.
         Доступные опции:
             Количество сообщений в ВК /vk
             Игра в блэкджек /blackjack
             Игра в пьяницу /drunkman
             """;
-    assertEquals(expectedResult2, strategy.exec(context));
+    assertEquals(expectedOutput2, strategy.exec(context));
+    ArrayList<String> availableCommands2 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail2 = new ArrayList<>();
+    expectedAvail2.add("vk");
+    expectedAvail2.add("blackjack");
+    expectedAvail2.add("drunkman");
+    assertArrayEquals(new ArrayList[]{expectedAvail2}, new ArrayList[]{availableCommands2});
+    assertEquals(State.CHOOSE, context.getPrevState());
 
     context.setInput("count_unseen_chats");
     String expectedResult3 = "Количество чатов с непрочитанными сообщениями: 2\n"
         + "Нажмите /choose или /help для продолжения";
     assertEquals(expectedResult3, strategy.exec(context));
+    ArrayList<String> availableCommands3 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail3 = new ArrayList<>();
+    expectedAvail3.add("choose");
+    expectedAvail3.add("help");
+    assertArrayEquals(new ArrayList[]{expectedAvail3}, new ArrayList[]{availableCommands3});
+    assertEquals(State.EMPTY, context.getPrevState());
 
-    context.setInput("not_correct");
+    context.setInput("notCorrect");
     String expectedResult4 = "Некорректный ввод токена. Попробуйте снова";
     assertEquals(expectedResult4, strategy.exec(context));
+    ArrayList<String> availableCommands4 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail4 = new ArrayList<>();
+    expectedAvail4.add("choose");
+    expectedAvail4.add("help");
+    assertArrayEquals(new ArrayList[]{expectedAvail4}, new ArrayList[]{availableCommands4});
+  }
+
+  @Test
+  public void TestBJStrategy(){
+    BJStrategy strategy = new BJStrategy(new TestObject(8755678));
+    Context context = new Context();
+
+    context.setInput("exit");
+    String expectedOutput1 = "Завершение работы.";
+    assertEquals(expectedOutput1, strategy.exec(context));
+    assertTrue(context.getExitState());
+    ArrayList<String> availableCommands1 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail1 = new ArrayList<>();
+    assertArrayEquals(new ArrayList[]{expectedAvail1}, new ArrayList[]{availableCommands1});
+    assertEquals(State.EMPTY, context.getPrevState());
+
+    context.setInput("return");
+    String expectedOutput2 = """
+        Главное меню.
+        Доступные опции:
+            Количество сообщений в ВК /vk
+            Игра в блэкджек /blackjack
+            Игра в пьяницу /drunkman
+            """;
+    assertEquals(expectedOutput2, strategy.exec(context));
+    assertEquals(State.CHOOSE, context.getPrevState());
+    ArrayList<String> availableCommands2 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail2 = new ArrayList<>();
+    expectedAvail2.add("vk");
+    expectedAvail2.add("blackjack");
+    expectedAvail2.add("drunkman");
+    assertArrayEquals(new ArrayList[]{expectedAvail2}, new ArrayList[]{availableCommands2});
+
+    context.setInput("correctInput");
+    strategy.exec(context);
+    assertTrue(strategy.getDist());
+
+    strategy.setDist(true);
+    context.setInput("notCorrectInput");
+    String expectedResult3 = "Некорректный запрос. Попробую снова)";
+    assertEquals(expectedResult3, strategy.exec(context));
+  }
+
+  @Test
+  public void TestDrunkManStrategy(){
+    DrunkManStrategy strategy = new DrunkManStrategy();
+    Context context = new Context();
+
+    context.setInput("exit");
+    String expectedOutput1 = "Завершение работы.";
+    assertEquals(expectedOutput1, strategy.exec(context));
+    assertTrue(context.getExitState());
+    ArrayList<String> availableCommands1 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail1 = new ArrayList<>();
+    assertArrayEquals(new ArrayList[]{expectedAvail1}, new ArrayList[]{availableCommands1});
+    assertEquals(State.EMPTY, context.getPrevState());
+
+    context.setInput("return");
+    String expectedOutput2 = """
+        Главное меню.
+        Доступные опции:
+            Количество сообщений в ВК /vk
+            Игра в блэкджек /blackjack
+            Игра в пьяницу /drunkman
+            """;
+    assertEquals(expectedOutput2, strategy.exec(context));
+    assertEquals(State.CHOOSE, context.getPrevState());
+    ArrayList<String> availableCommands2 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail2 = new ArrayList<>();
+    expectedAvail2.add("vk");
+    expectedAvail2.add("blackjack");
+    expectedAvail2.add("drunkman");
+    assertArrayEquals(new ArrayList[]{expectedAvail2}, new ArrayList[]{availableCommands2});
+
+    context.setInput("notCorrectInput");
+    String expectedResult3 = "Некорректный запрос. Попробую снова)";
+    assertEquals(expectedResult3, strategy.exec(context));
+
+    context.setInput("play");
+    strategy.exec(context);
+    ArrayList<String> availableCommands4 = context.getAvailableCommands();
+    ArrayList<String> expectedAvail4 = new ArrayList<>();
+    expectedAvail4.add("play");
+    expectedAvail4.add("return");
+    assertArrayEquals(new ArrayList[]{expectedAvail4}, new ArrayList[]{availableCommands4});
+    assertEquals(State.PLAY_DRUNKMAN, context.getPrevState());
   }
 }

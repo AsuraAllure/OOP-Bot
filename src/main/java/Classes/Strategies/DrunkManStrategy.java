@@ -1,14 +1,15 @@
 package Classes.Strategies;
 
 import Classes.Commands.StandartCommand;
-import Classes.Commands.StartCommand;
+import Classes.Contexts.Changers.ChooseContext;
+import Classes.Contexts.Changers.DMContext;
+import Classes.Contexts.Changers.DMEndContext;
+import Classes.Contexts.Context;
 import Classes.MessageBox;
 import Classes.TestObject;
-import Enums.Buttons;
 import Enums.State;
 import Games.DrunkMan.DrunkMan;
 import Interfaces.Strategy;
-import Classes.Contexts.Context;
 
 
 public class DrunkManStrategy implements Strategy {
@@ -33,25 +34,20 @@ public class DrunkManStrategy implements Strategy {
       }
       case RETURN -> {
         context.setPrevState(State.CHOOSE);
-        context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
+        ChooseContext.switchContext(context);
         return mb.getMainMenuMessage();
       }
     }
     if (!correctDrunkManInput(context.getInput()))
       return mb.getIncorrectCommand();
 
-    context.addAvailableCommand(String.valueOf(Buttons.PLAY).toLowerCase());
-    context.addAvailableCommand(String.valueOf(Buttons.RETURN).toLowerCase());
-    
+    DMContext.switchContext(context);
+
     String mes = dm.play();
 
     if (!dm.getState()){
-      context.addAvailableCommand(String.valueOf(Buttons.CHOOSE).toLowerCase());
-      context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+      DMEndContext.switchContext(context);
       dm.refresh();
-      context.setPrevState(State.CHOOSE);
     }
     return mes;
   }

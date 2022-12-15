@@ -50,7 +50,6 @@ public class BlackJack implements Game {
     dealerBlackjack.doStep(deck);
     roundCheck();
     return mess + loggingStep();
-
   }
 
   public String play(String input) {

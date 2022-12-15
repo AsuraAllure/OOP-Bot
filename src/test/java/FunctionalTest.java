@@ -275,4 +275,221 @@ public class FunctionalTest {
         """;
     assertEquals(realExpectedOut, testOutput);
   }
+
+  @Test
+  public void Test11() {
+    InnerState in = new InnerState(new TestObject(252));
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test11");
+    String realExpectedOut = """
+        Привет!
+        Главное меню: /choose.
+        Документация команд: /help.
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
+        HEARTS C6
+        DIAMONDS C10
+        Вы проиграли раунд
+        У вас 17 карт
+        У ведущего 19 карт
+        DIAMONDS C7
+        CLUBS KING
+        Вы проиграли раунд
+        У вас 16 карт
+        У ведущего 20 карт
+        SPADES QUEEN
+        DIAMONDS KING
+        Вы проиграли раунд
+        У вас 15 карт
+        У ведущего 21 карт
+        DIAMONDS ACE
+        SPADES ACE
+        HEARTS KING
+        SPADES KING
+        SPADES C9
+        DIAMONDS QUEEN
+        Вы проиграли раунд
+        У вас 12 карт
+        У ведущего 24 карт
+        SPADES C8
+        CLUBS VALET
+        Вы проиграли раунд
+        У вас 11 карт
+        У ведущего 25 карт
+        CLUBS C7
+        CLUBS QUEEN
+        Вы проиграли раунд
+        У вас 10 карт
+        У ведущего 26 карт
+        DIAMONDS C6
+        CLUBS C9
+        Вы проиграли раунд
+        У вас 9 карт
+        У ведущего 27 карт
+        HEARTS C7
+        DIAMONDS C8
+        Вы проиграли раунд
+        У вас 8 карт
+        У ведущего 28 карт
+        SPADES C7
+        CLUBS C10
+        Вы проиграли раунд
+        У вас 7 карт
+        У ведущего 29 карт
+        HEARTS C9
+        DIAMONDS VALET
+        Вы проиграли раунд
+        У вас 6 карт
+        У ведущего 30 карт
+        SPADES C10
+        CLUBS ACE
+        Вы проиграли раунд
+        У вас 5 карт
+        У ведущего 31 карт
+        SPADES C6
+        DIAMONDS C9
+        Вы проиграли раунд
+        У вас 4 карт
+        У ведущего 32 карт
+        HEARTS VALET
+        HEARTS QUEEN
+        Вы проиграли раунд
+        У вас 3 карт
+        У ведущего 33 карт
+        HEARTS C10
+        CLUBS C6
+        Вы выйграли раунд
+        У вас 4 карт
+        У ведущего 32 карт
+        CLUBS C8
+        HEARTS ACE
+        Вы проиграли раунд
+        У вас 3 карт
+        У ведущего 33 карт
+        HEARTS C8
+        SPADES VALET
+        Вы проиграли раунд
+        У вас 2 карт
+        У ведущего 34 карт
+        HEARTS C10
+        HEARTS C6
+        Вы выйграли раунд
+        У вас 3 карт
+        У ведущего 33 карт
+        CLUBS C6
+        DIAMONDS C10
+        Вы проиграли раунд
+        У вас 2 карт
+        У ведущего 34 карт
+        HEARTS C10
+        DIAMONDS C7
+        Вы выйграли раунд
+        У вас 3 карт
+        У ведущего 33 карт
+        HEARTS C6
+        CLUBS KING
+        Вы проиграли раунд
+        У вас 2 карт
+        У ведущего 34 карт
+        HEARTS C10
+        SPADES QUEEN
+        Вы проиграли раунд
+        У вас 1 карт
+        У ведущего 35 карт
+        DIAMONDS C7
+        DIAMONDS KING
+
+        Вы проиграли
+        Завершение работы.
+        """;
+    assertEquals(realExpectedOut, testOutput);
+  }
+
+  @Test
+  public void Test12() {
+    InnerState in = new InnerState(new TestObject(3452));
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test12");
+    String realExpectedOut = """
+        Привет!
+        Главное меню: /choose.
+        Документация команд: /help.
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
+        DIAMONDS C7
+        CLUBS C10
+        Вы проиграли раунд
+        У вас 17 карт
+        У ведущего 19 карт
+        DIAMONDS ACE
+        SPADES QUEEN
+        Вы выйграли раунд
+        У вас 18 карт
+        У ведущего 18 карт
+        SPADES ACE
+        CLUBS C7
+        Вы выйграли раунд
+        У вас 19 карт
+        У ведущего 17 карт
+        DIAMONDS C9
+        SPADES C10
+        Вы проиграли раунд
+        У вас 18 карт
+        У ведущего 18 карт
+        CLUBS KING
+        HEARTS ACE
+        Вы проиграли раунд
+        У вас 17 карт
+        У ведущего 19 карт
+        DIAMONDS VALET
+        DIAMONDS QUEEN
+        Вы проиграли раунд
+        У вас 16 карт
+        У ведущего 20 карт
+        CLUBS VALET
+        DIAMONDS C8
+        Вы выйграли раунд
+        У вас 17 карт
+        У ведущего 19 карт
+        Завершение работы.
+        """;
+    assertEquals(realExpectedOut, testOutput);
+  }
+
+  @Test
+  public void Test13() {
+    InnerState in = new InnerState(new TestObject(54654));
+    String testOutput = testOutput(in, "src/test/java/TestFile/Test13");
+    String realExpectedOut = """
+        Привет!
+        Главное меню: /choose.
+        Документация команд: /help.
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу
+        HEARTS C9
+        SPADES C7
+        Вы выйграли раунд
+        У вас 19 карт
+        У ведущего 17 карт
+        CLUBS VALET
+        HEARTS C10
+        Вы выйграли раунд
+        У вас 20 карт
+        У ведущего 16 карт
+        Некорректный запрос. Попробую снова)
+        DIAMONDS C7
+        CLUBS KING
+        Вы проиграли раунд
+        У вас 19 карт
+        У ведущего 17 карт
+        HEARTS KING
+        SPADES C10
+        Вы выйграли раунд
+        У вас 20 карт
+        У ведущего 16 карт
+        Завершение работы.
+        """;
+    assertEquals(realExpectedOut, testOutput);
+  }
 }
