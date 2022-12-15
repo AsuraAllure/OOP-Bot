@@ -48,9 +48,10 @@ public class MessageBox {
 
   public String getChoiceOfMessenger() {
 
-    return "Жми /vk, если хочешь подключиться к Вконтакте\n"
-        + "   /blackjack, если хочешь начать игру в blackjack\n"
-        + "   /drunkman, если хочешь начать игру в пьяницу";
+    return """
+        Жми /vk, если хочешь подключиться к Вконтакте
+           /blackjack, если хочешь начать игру в blackjack
+           /drunkman, если хочешь начать игру в пьяницу""";
   }
 
   public String getVkToken() {

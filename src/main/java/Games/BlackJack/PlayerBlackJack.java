@@ -40,8 +40,6 @@ public class PlayerBlackJack extends Player {
     st = PlayerState.WAIT;
   }
 
-
-
   public void takeCard(BlackJackCard card) throws AceException {
     super.takeCard(card);
 

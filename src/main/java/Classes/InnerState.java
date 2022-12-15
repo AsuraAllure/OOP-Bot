@@ -65,7 +65,6 @@ public class InnerState {
         }
         return mes;
 
-
       case WAIT_VK_TOKEN:
       case WAIT_VK_COMMAND:
         if (to == null) {

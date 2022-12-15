@@ -18,8 +18,5 @@ public class TestMain {
       if (countStep < 100)
         System.out.println(Long.toString(i) + "  " + Integer.toString(countStep));
     }
-
-
-
   }
 }
