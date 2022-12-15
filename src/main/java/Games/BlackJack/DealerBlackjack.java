@@ -19,6 +19,7 @@ public class DealerBlackjack extends PlayerBlackJack {
     try {
       takeCard(new BlackJackCard(deck.getCard()));
     } catch (AceException ace) {
+      drowCard(hand.size()-1);
       if (getCurScore() <= 10) {
         ace.curCard.setScore(11);
       }

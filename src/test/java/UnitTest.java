@@ -239,7 +239,7 @@ public class UnitTest {
   }
 
   @Test
-  public void TestStartStrategy(){
+  public void TestStartStrategy() {
     StartStrategy strategy = new StartStrategy();
     Context context = new Context();
 
@@ -314,7 +314,7 @@ public class UnitTest {
   }
 
   @Test
-  public void TestVKStrategy(){
+  public void TestVKStrategy() {
     VKStrategy strategy = new VKStrategy(new TestObject());
     Context context = new Context();
 
