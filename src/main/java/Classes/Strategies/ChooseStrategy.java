@@ -1,6 +1,9 @@
 package Classes.Strategies;
 
 import Classes.Commands.ChooseCommand;
+import Classes.Contexts.Changers.BJContext;
+import Classes.Contexts.Changers.ChooseContext;
+import Classes.Contexts.Changers.VKContext;
 import Classes.Contexts.Context;
 import Classes.MessageBox;
 import Enums.Buttons;
@@ -20,29 +23,22 @@ public class ChooseStrategy implements Strategy {
 
     switch (com.getComType()) {
       case RETURN:
-        context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
+        ChooseContext.switchContext(context);
         return mb.getMainMenuMessage();
       case VK:
-        context.setPrevState(State.WAIT_VK_TOKEN);
-        context.addAvailableCommand(String.valueOf(Buttons.RETURN).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.EXIT).toLowerCase());
+        VKContext.switchContext(context);
         return mb.getVkToken();
       case EXIT:
         context.setExitState(true);
         return mb.getGoodbye();
       case BLACKJACK:
-        context.addAvailableCommand(String.valueOf(Buttons.WAIT).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.TAKE).toLowerCase());
-        context.setPrevState(State.PLAY_BLACKJACK);
+        BJContext.switchContext(context);
         return "";
       case DRUNKMAN:
         context.setPrevState(State.PLAY_DRUNKMAN);
         return "";
       case CHOOSE:
-        context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+        ChooseContext.switchContext(context);
         return mb.getChoiceOfMessenger();
       case NOT_CORRECT:
         context.addAvailableCommand(String.valueOf(Buttons.START).toLowerCase());

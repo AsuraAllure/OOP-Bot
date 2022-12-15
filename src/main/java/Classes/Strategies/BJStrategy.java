@@ -1,7 +1,9 @@
 package Classes.Strategies;
 
 import Classes.Commands.StandartCommand;
+import Classes.Contexts.Changers.ChooseContext;
 import Classes.Contexts.Context;
+import Classes.Contexts.Changers.ExitContext;
 import Classes.MessageBox;
 import Classes.TestObject;
 import Enums.Buttons;
@@ -10,21 +12,20 @@ import Games.BlackJack.BlackJack;
 import Interfaces.Strategy;
 
 public class BJStrategy implements Strategy {
-
   private final MessageBox mb;
   private final BlackJack bj;
-  private boolean distr;
+  private boolean dist;
 
   public BJStrategy() {
     mb = new MessageBox();
     bj = new BlackJack();
-    distr = false;
+    dist = false;
   }
 
   public BJStrategy(TestObject a) {
     mb = new MessageBox();
     bj = new BlackJack();
-    distr = false;
+    dist = false;
     bj.setSeed(a.getSeed());
   }
 
@@ -32,17 +33,14 @@ public class BJStrategy implements Strategy {
     StandartCommand com = new StandartCommand(context.getInput());
     switch (com.getComType()) {
       case EXIT:
-        context.setExitState(true);
+        ExitContext.switchContext(context);
         return mb.getGoodbye();
       case RETURN:
-        context.setPrevState(State.CHOOSE);
-        context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
+        ChooseContext.switchContext(context);
         return mb.getMainMenuMessage();
     }
-    if (!distr) {
-      distr = true;
+    if (!dist) {
+      dist = true;
       bj.startPlay();
       return bj.distribution();
     }
@@ -53,11 +51,10 @@ public class BJStrategy implements Strategy {
     String step = bj.play(context.getInput());
 
     if (bj.getState()) {
-      context.addAvailableCommand(String.valueOf(Buttons.CHOOSE).toLowerCase());
-      context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
+      ChooseContext.switchContext(context);
       stepMessage += step + "\n" + mb.getEndBlackjack();
       bj.refresh();
-      context.setPrevState(State.CHOOSE);
+
     } else {
       stepMessage += step;
     }

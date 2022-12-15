@@ -1,20 +1,22 @@
 package Games.DrunkMan;
 
 import CardGame.GameException;
+import Interfaces.Game;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DrunkMan {
-  private PlayerDrunkMan dealer;
-  private PlayerDrunkMan user;
-  private DrunkManDeck deck;
+public class DrunkMan implements Game {
+
+  private final PlayerDrunkMan dealer;
+  private final PlayerDrunkMan user;
   List<DrunkManCard> table;
+  private DrunkManDeck deck;
   private boolean isInit;
   private boolean userWin;
   private Boolean gameState;
 
 
-  public DrunkMan(){
+  public DrunkMan() {
     try {
       deck = new DrunkManDeck();
     } catch (GameException e) {
@@ -28,6 +30,7 @@ public class DrunkMan {
     table = new LinkedList<DrunkManCard>();
 
   }
+
   public void startPlay() {
     gameState = true;
     userWin = false;
@@ -37,12 +40,15 @@ public class DrunkMan {
     deck.refresh();
     table.clear();
   }
+
   public void setSeed(long a) {
     deck.setSeed(a);
   }
+
   public boolean getState() {
     return gameState;
   }
+
   public void refresh() {
     dealer.refresh();
     user.refresh();
@@ -52,7 +58,12 @@ public class DrunkMan {
     userWin = false;
     isInit = false;
   }
-  public String play(){
+
+  public String play() {
+    return play("s");
+  }
+
+  public String play(String imp) {
 
     if (!isInit) {
       startPlay();
@@ -60,65 +71,71 @@ public class DrunkMan {
       isInit = true;
     }
     table.clear();
-      while (true) {
-        DrunkManCard d1 = user.drowCard();
-        DrunkManCard d2 = dealer.drowCard();
-        table.add(d1);
-        table.add(d2);
+    while (true) {
+      DrunkManCard d1 = user.drowCard();
+      DrunkManCard d2 = dealer.drowCard();
+      table.add(d1);
+      table.add(d2);
 
-        if (d1.compareTo(d2) != 0) {
-          userWin = (d1.compareTo(d2)) != -1;
-          break;
-        }
-        if (user.getCountCard() == 0 || dealer.getCountCard() == 0) {
-          userWin = true;
-          break;
-        }
+      if (d1.compareTo(d2) != 0) {
+        userWin = (d1.compareTo(d2)) != -1;
+        break;
       }
+      if (user.getCountCard() == 0 || dealer.getCountCard() == 0) {
+        userWin = true;
+        break;
+      }
+    }
 
-      for(DrunkManCard c : table)
-        if (userWin)
-          user.takeCard(c);
-        else
-          dealer.takeCard(c);
+    for (DrunkManCard c : table) {
+      if (userWin) {
+        user.takeCard(c);
+      } else {
+        dealer.takeCard(c);
+      }
+    }
 
     roundCheck();
     return loggingStep();
   }
-  private String loggingStep(){
+
+  private String loggingStep() {
     String mes = "";
 
-    for (int i=0; i < table.size(); i++)
-      mes += table.get(i).toString()+'\n';
+    for (int i = 0; i < table.size(); i++) {
+      mes += table.get(i).toString() + '\n';
+    }
 
-    if (gameState){
-      if (userWin)
+    if (gameState) {
+      if (userWin) {
         mes += "Вы выйграли раунд";
-      else
+      } else {
         mes += "Вы проиграли раунд";
+      }
 
-      mes += "\nУ вас " + user.getCountCardStr()+ "\nУ ведущего " + dealer.getCountCardStr();
+      mes += "\nУ вас " + user.getCountCardStr() + "\nУ ведущего " + dealer.getCountCardStr();
       return mes;
     }
 
-    if (userWin)
+    if (userWin) {
       return mes + "\nВы выйграли, поздравляем";
+    }
     return mes + "\nВы проиграли";
   }
 
-  private void init(PlayerDrunkMan u, PlayerDrunkMan d){
-      for (int i=0; i < 18; i++) {
-        try {
-          u.takeCard(deck.getCard());
-          d.takeCard(deck.getCard());
-        }catch (GameException e){
-          e.printStackTrace();
-          throw new Error();
-        }
+  private void init(PlayerDrunkMan u, PlayerDrunkMan d) {
+    for (int i = 0; i < 18; i++) {
+      try {
+        u.takeCard(deck.getCard());
+        d.takeCard(deck.getCard());
+      } catch (GameException e) {
+        e.printStackTrace();
+        throw new Error();
       }
+    }
   }
 
-  private void roundCheck(){
-    gameState =  !(user.isWin() || dealer.isWin());
+  private void roundCheck() {
+    gameState = !(user.isWin() || dealer.isWin());
   }
 }

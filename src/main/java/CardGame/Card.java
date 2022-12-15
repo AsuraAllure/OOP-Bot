@@ -3,8 +3,8 @@ package CardGame;
 import Enums.Games.Suit;
 import Enums.Games.Value;
 
-public class Card {
 
+public class Card {
   protected Suit suit;
   protected Value value;
   public Card(Suit suit, Value val) {

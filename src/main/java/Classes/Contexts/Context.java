@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class Context {
 
-  private final ArrayList<String> availableCommands;
-  private String input;
-  private State prevState;
-  private boolean exitState;
-
+  protected ArrayList<String> availableCommands;
+  protected String input;
+  protected State prevState;
+  protected boolean exitState;
   public Context() {
     exitState = false;
     prevState = State.EMPTY;
     availableCommands = new ArrayList<>();
+    input = "";
   }
 
   public String getInput() {

@@ -1,10 +1,13 @@
 package Classes.Strategies;
 
 import Classes.Commands.VKCommand;
+import Classes.Contexts.Changers.ChooseContext;
+import Classes.Contexts.Changers.ExitContext;
+import Classes.Contexts.Changers.StartContext;
+import Classes.Contexts.Changers.VKContext;
 import Classes.Contexts.Context;
 import Classes.MessageBox;
 import Classes.TestObject;
-import Enums.Buttons;
 import Enums.State;
 import Interfaces.Strategy;
 import VK.TestVK;
@@ -29,24 +32,21 @@ public class VKStrategy implements Strategy {
     VKCommand com = new VKCommand(context.getInput());
     switch (com.getComType()) {
       case EXIT:
-        context.setExitState(true);
+        ExitContext.switchContext(context);
         return mb.getGoodbye();
       case RETURN:
-        context.setPrevState(State.CHOOSE);
-        context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
+        ChooseContext.switchContext(context);
         return mb.getMainMenuMessage();
       case VK_CHOOSE_OPERATION:
-        context.setPrevState(State.EMPTY);
+        StartContext.switchContext(context);
         return mb.countChatsMessage() + vk.countUnseenChats() + mb.getVKCommand2();
       default:
+
         if (context.getPrevState() == State.WAIT_VK_COMMAND) {
           return mb.getIncorrectCommand();
         }
         if (!vk.setToken(context.getInput())) {
-          context.setPrevState(State.WAIT_VK_COMMAND);
-          context.addAvailableCommand(String.valueOf(Buttons.COUNT_UNSEEN_CHAT).toLowerCase());
+          VKContext.switchContext(context);
           return mb.getVKCommand();
         }
         return mb.getIncorrectToken();

@@ -3,8 +3,9 @@ package Games.BlackJack;
 import CardGame.GameException;
 
 import Enums.Games.BlackJack.GameStateBlackJack;
+import Interfaces.Game;
 
-public class BlackJack {
+public class BlackJack implements Game {
 
   private final DealerBlackjack dealerBlackjack;
   private final UserBlackjack userBlackjack;

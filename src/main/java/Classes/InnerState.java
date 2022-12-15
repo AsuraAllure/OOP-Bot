@@ -74,7 +74,6 @@ public class InnerState {
         }
         context.setInput(input);
         return strategy.exec(context);
-
       case PLAY_BLACKJACK:
       case PLAY_DRUNKMAN:
         context.setInput(input);

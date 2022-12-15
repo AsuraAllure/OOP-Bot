@@ -1,7 +1,11 @@
 package Classes.Strategies;
 
 import Classes.Commands.StartCommand;
+import Classes.Contexts.Changers.ChooseContext;
 import Classes.Contexts.Context;
+import Classes.Contexts.Changers.ExitContext;
+import Classes.Contexts.Changers.HelpContext;
+import Classes.Contexts.Changers.StartContext;
 import Classes.MessageBox;
 import Enums.Buttons;
 import Enums.State;
@@ -19,22 +23,16 @@ public class StartStrategy implements Strategy {
     StartCommand com = new StartCommand(context.getInput());
     switch (com.getComType()) {
       case START:
-        context.addAvailableCommand(String.valueOf(Buttons.CHOOSE).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.HELP).toLowerCase());
+        StartContext.switchContext(context);
         return mb.getStart();
       case HELP:
-        context.addAvailableCommand(String.valueOf(Buttons.EXIT).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.CHOOSE).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.RETURN).toLowerCase());
+        HelpContext.switchContext(context);
         return mb.getHelp();
       case CHOOSE:
-        context.setPrevState(State.CHOOSE);
-        context.addAvailableCommand(String.valueOf(Buttons.VK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.BLACKJACK).toLowerCase());
-        context.addAvailableCommand(String.valueOf(Buttons.DRUNKMAN).toLowerCase());
+        ChooseContext.switchContext(context);
         return mb.getChoiceOfMessenger();
       case EXIT:
-        context.setExitState(true);
+        ExitContext.switchContext(context);
         return mb.getGoodbye();
       case NOT_CORRECT:
         context.setPrevState(State.EMPTY);
