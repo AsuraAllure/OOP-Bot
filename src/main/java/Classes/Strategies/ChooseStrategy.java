@@ -42,7 +42,7 @@ public class ChooseStrategy implements Strategy {
         return mb.getChoiceOfMessenger();
       case NOT_CORRECT:
         context.addAvailableCommand(String.valueOf(Buttons.START).toLowerCase());
-        context.setPrevState(State.CHOOSE);
+        context.setPrevState(State.EMPTY);
         return mb.getIncorrectCommand();
     }
     context.addAvailableCommand(String.valueOf(Buttons.START).toLowerCase());
