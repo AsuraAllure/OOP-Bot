@@ -1,6 +1,8 @@
 package Classes.Contexts;
 
+
 import Enums.State;
+
 import java.util.ArrayList;
 
 public class Context {

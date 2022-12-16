@@ -15,7 +15,7 @@ public class ConsoleBot {
   public ConsoleBot(Factory fc) {
     this.rd = fc.getReader();
     this.wr = fc.getWriter();
-    is = new InnerState(new TestObject(54654));
+    is = new InnerState(new TestObject(234));
   }
 
   public void run() {

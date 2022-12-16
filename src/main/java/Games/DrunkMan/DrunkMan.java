@@ -58,7 +58,6 @@ public class DrunkMan implements Game {
     userWin = false;
     isInit = false;
   }
-
   public String play() {
     return play("s");
   }

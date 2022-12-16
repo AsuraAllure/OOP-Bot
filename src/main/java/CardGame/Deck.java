@@ -73,14 +73,15 @@ public class Deck {
   }
 
   public void refresh() {
+    initDeck();
+    shuffle();
     shuffle();
     countUsing = 0;
   }
 
   public void setSeed(long a) {
     seed = a;
-    initDeck();
-    shuffle();
+
   }
 
   public void printDeck() {

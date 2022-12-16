@@ -3,9 +3,7 @@ import CardGame.Player;
 import CardGame.Card;
 
 public class PlayerDrunkMan extends Player {
-
   private int curCountCard;
-
   public PlayerDrunkMan(){
     super();
     curCountCard = 0;
