@@ -19,7 +19,7 @@ public class VKContext implements ContextChanger {
     if (context.getPrevState() == State.WAIT_VK_TOKEN){
       context.clearAvailableCommand();
       context.setPrevState(State.WAIT_VK_COMMAND);
-      context.addAvailableCommand(String.valueOf(Buttons.COUNT_UNSEEN_CHAT).toLowerCase());
+      context.addAvailableCommand(String.valueOf(Buttons.COUNT_UNSEEN_CHATS).toLowerCase());
     }
   }
 }

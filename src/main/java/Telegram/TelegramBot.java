@@ -3,6 +3,8 @@ package Telegram;
 import Classes.InnerState;
 import Interfaces.Factory;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -16,11 +18,13 @@ public class TelegramBot extends TelegramLongPollingBot {
 
   final private String BOT_TOKEN = System.getenv("BOT_TOKEN");
   final private String BOT_NAME = "CheckVKBot";
+  private Map<String, InnerState> map;
   final private InnerState is;
   private ReplyKeyboardMarkup replyKeyboardMarkup;
 
   public TelegramBot(Factory fc) {
     this.is = new InnerState();
+    this.map = new HashMap<>();
   }
 
   @Override
@@ -41,7 +45,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         String chatId = inMess.getChatId().toString();
 
         String request = inMess.getText();
-        String response = is.execCommand(request);
+
+        if (!map.containsKey(chatId)){
+          map.put(chatId, is);
+        }
+        String response = map.get(chatId).execCommand(request);
 
         SendMessage outMess = new SendMessage();
 
@@ -73,5 +81,4 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     replyKeyboardMarkup.setKeyboard(keyboardRows);
   }
-
 }
