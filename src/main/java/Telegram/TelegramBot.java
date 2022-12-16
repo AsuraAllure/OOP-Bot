@@ -19,11 +19,11 @@ public class TelegramBot extends TelegramLongPollingBot {
   final private String BOT_TOKEN = System.getenv("BOT_TOKEN");
   final private String BOT_NAME = "CheckVKBot";
   private Map<String, InnerState> map;
-  final private InnerState is;
+
   private ReplyKeyboardMarkup replyKeyboardMarkup;
 
   public TelegramBot(Factory fc) {
-    this.is = new InnerState();
+
     this.map = new HashMap<>();
   }
 
@@ -56,7 +56,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         outMess.setChatId(chatId);
         outMess.setText(response);
 
-        initKeyboard(is.getAvailableCommands());
+        initKeyboard(map.get(chatId).getAvailableCommands());
         outMess.setReplyMarkup(replyKeyboardMarkup);
 
         execute(outMess);
