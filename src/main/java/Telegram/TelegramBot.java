@@ -47,7 +47,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         String request = inMess.getText();
 
         if (!map.containsKey(chatId)){
-          map.put(chatId, is);
+          map.put(chatId, new InnerState());
         }
         String response = map.get(chatId).execCommand(request);
 
